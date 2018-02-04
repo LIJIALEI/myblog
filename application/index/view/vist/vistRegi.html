@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/regi.css"/>
+{include file="public/header" /}
+		<div class="content clearfix">
+			<div class="wel ">
+				<div class="img1"></div>
+				<div class="img2"></div>
+			</div>
+                    <form id='regiForm' method="post">
+			<div class="infmForm ">
+				<ul>
+					<li>
+						<p>用户名:</p>
+						<input id="username" type="text" name="vist_name" id='vist_name' />
+					</li>
+					<li>
+						<p>输入密码:</p>
+						<input id="password" type="password" name="vist_password" id='vist_password'/>
+					</li>
+					<li>
+						<p>再次输入:</p>
+						<input id="checkPassword" type="password" name="vist_password_confirm"  id='vist_password_confirm'/>
+					</li>
+					<li>
+						<p>邮箱:</p>
+						<input id="email" type="text" name="vist_email" id='vist_email'/>
+						
+					</li>
+                                       
+					<li>
+                                            <input type="button" id='regi' class="sub" value="注     册">
+					</li>
+                                        <li>
+                                            <p type='hidden' id='warnning' class="warnning"></p>
+					</li>
+                                        
+				</ul>	
+			</div>
+                    </form>
+	
+		</div>
+		
+		<div class="con ">
+			<div class="con_p">
+				<b><img src="__STATIC__/img/logo/huanying.png" alt="" /></b>
+				<div class="imgBottom"></div>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里注册登录后，您可以欣赏同平台用户上传的旅游美照，可以评论旅行文章，也可以和旅友们一起讨论出行攻略，或者提问寻求方法。
+				当<br />然您也可以自己发表文章图片或者攻略。<br /><br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;祝您在这里逛的开心~</p>
+			</div>
+			
+			<div class="con_img">
+				<ul>
+					<li id="li1"><div><span>品文</span></div></li>
+					<li id="li2"><div><span>美景</span></div></li>
+				</ul>
+				<ul>
+					<li id="li3"><div><span>休闲</span></div></li>
+					<li id="li4"><div><span>邮件</span></div></li>
+				</ul>
+			</div>
+		</div>
+		
+		{include file="public/footer" /}
+	</body>
+        
+        <script>
+            $(document).ready(function(){
+                $('#regi').click(function(){
+                    $.ajax({
+                        type:"post",
+                        dataType:"json",
+                        url:"{url('vistRegi')}",
+                        data:$("#regiForm").serialize(),
+                        success:function(data){
+                            if(data.status==1){
+                                alert(data.message);
+                                window.location.href="{:url('Vist/vistLogin')}";
+                            }else{
+                                $('#warnning').html(data.message);
+                            }
+                        }
+                    });
+                });
+            });
+            
+        </script>
+</html>

@@ -1,0 +1,56 @@
+{include file="public/header"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/articleWrite.css"/>
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__STATIC__/static/h-ui.admin/js/H-ui.admin.page.js"></script>        
+        
+        <div class="content">
+            <div class="top">
+                <div class="t_img1"></div>
+                <div class="t_img2"></div>
+            </div >
+            
+            <div class="con_form">
+                <div class="inf"><span class="p1"><a href="{:url('Article/articleHome')}">所有文章</a>|<a href="{:url('Article/articleWrite')}">发表文章</a></span></div>      
+                <form id="write">
+                <ul>
+                    <li>
+                        <p class='infoP1'>主题：<input type="text" id='article_title' name='article_title'></p>
+                    </li>
+                    <li>
+                        <p class='infoP1'>内容：</p>
+                        <textarea cols=""  rows="" name="article_content" id='article_content'></textarea>
+                    </li>
+                    <li>
+                        <input type="button" id="button" name="button" value="提    交">
+                    </li>
+                </ul>  
+                </form>    
+            </div>
+        </div>
+        
+        {include file="public/footer"}
+        
+        <script>
+        $('#button').click(function(){
+                $.ajax({
+                    type:"post",
+                    dataType:"json",
+                    url:"{:url('articleWrite')}",
+                    data:$("#write").serialize(),
+                    success:function(data){
+                        if(data.status==0){
+                           layer.msg(data.message);
+                        }else{
+                            
+                             window.location.href="{:url('article/articleHome')}";
+                        }
+                    }
+                });
+            });
+    
+            
+        </script>
+
+    </body>

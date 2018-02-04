@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$title}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/Animation.css"/>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/common.css"/>
+
+                <script type="text/javascript" src="__STATIC__/js/jquery-3.0.0.min.js"></script>
+	</head>
+	<body>
+		<div class="header ">
+			<div class="header_in ">
+                            <img id="header_img" src="__STATIC__/img/logo/1.png"/><div class="sess"><a  href="{:url('vist/vistInfo')}">{$Think.session.vist.vist_name}</a></div>
+				
+						<ul class="header_ul">
+							<li>
+								<a id="header_a1" href="{:url('index/index')}">首页</a>
+								<p>Home</p>
+							</li>
+							<li>
+								<a id="header_a2"  href="{:url('article/articleHome')}">日志</a>
+								<p>Article</p>
+                                                                
+							</li>
+							<li>
+								<a id="header_a3"  href="{:url('photo/photoHome')}">风景相册</a>
+								<p>Photo</p>
+							</li>
+							{if condition="$Think.session.vist.vist_name neq null"}
+                                                             <li>
+                                                                <a id="header_a6"  href="javascript:;" onClick="logout()">退出登录</a>
+								<p>Logout</p>
+                                                            </li>
+                                                        {else /}
+                                                            <li>
+                                                                <a id="header_a4"  href="{:url('vist/vistLogin')}">登录</a>
+                                                                    <p>Login</p>
+                                                            </li>               
+                                                            <li>
+                                                                <a id="header_a5"  href="{:url('vist/vistRegi')}">注册</a>
+                                                                    <p>Login</p>
+                                                            </li>
+                                                        {/if}
+                                                            
+                                                            
+                                                        
+                                                            
+                                                        
+                                                            
+                                                            
+                                                        
+							
+						</ul>
+				
+			</div>
+		</div>
+            <script>
+               function logout(){
+                   if(confirm('是否要退出')){
+                       window.location.href="{:url('vist/vistLogout')}";
+                   }
+               }
+               
+            </script>
+                
+          

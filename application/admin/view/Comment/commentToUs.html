@@ -1,0 +1,83 @@
+{include file="public/meta"/}
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/page.css"/>
+<title>{$title}</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+{include file="public/header"/}
+
+{include file="category/categoryList"/}
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+		<span class="c-gray en">&gt;</span>
+		评论管理
+		<span class="c-gray en">&gt;</span>
+		意见列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a> </nav>
+	<div class="Hui-article">
+		<article class="cl pd-20">
+			
+			<div class="cl pd-5 bg-1 bk-gray mt-20">
+				<span class="r">意见共有：<strong>{$count}</strong> 条</span>
+			</div>
+			<table class="table table-border table-bordered table-bg">
+				<thead>
+					<tr>
+						<th scope="col" colspan="9">意见列表</th>
+					</tr>
+					<tr class="text-c">
+						<th width="40">意见ID</th>
+						<th width="100">发送者</th>
+						<th width="100">意见主题</th>
+                                                <th width="250">意见内容</th>
+						<th width="200">发送时间</th>
+						<th width="100">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tbody>
+                                        {volist name='suggestion' id='vo'}
+					<tr class="text-c">
+                                                
+                                                <td>{$vo.suggestion_id}</td>
+                                                <td>{$vo.vist_name}</td>
+                                                <td>{$vo.suggestion_title}</td>
+                                                <td>{$vo.suggestion_content}</td>
+                                                <td>{:date('Y/m/d  ,  H:i:s',$vo.suggestion_create_time)}</td>
+						<td class="td-manage">
+                                                    <a title="删除" href="javascript:;" onclick="suggestion_del(this,'{$vo.suggestion_id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                                                </td>
+					</tr>
+					{/volist}
+                                        
+				</tbody>
+				</tbody>
+			</table>{$suggestion->render()}
+		</article>
+	</div>
+</section>
+
+{include file="public/footer"/}
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="__STATIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript">
+
+
+function suggestion_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		
+		window.location.href="{:url('comment/suggestionDel')}?suggestion_id="+id;
+		
+	});
+    
+}
+
+
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

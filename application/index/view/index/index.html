@@ -1,0 +1,155 @@
+{include file="public/header"/}
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/home.css"/>
+		<script type="text/javascript" src="__STATIC__/js/sight.jquery.min.js"></script>
+		<script type="text/javascript" src="__STATIC__/js/sight.js"></script>
+                <script type="text/javascript" src="__STATIC__/js/jquery-3.0.0.min.js"></script>
+                <div class="container">
+			<div class="wel ">
+				<div class="img1"></div>
+				<div class="img2"></div>
+			</div>
+			
+			<div class="idea">
+				<div class="title"></div>	
+				<div class="messg"></div>
+				
+				<div class="iLeft">
+					<b><a href="{:url('article/articleHome')}"><img src="__STATIC__/img/logo/wenzi.png"/></a></b>
+					<div class="imgBottom"></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在“旅程”，您可以品阅各位旅友的
+						游记，散文或者饭后随笔。因为相同的爱好——旅游，来到这里。在路上赏着自己的风景，
+						看着别人的故事，不也是一种愉悦吗？<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您也可以看到旅友写的出行攻略，
+						让您为出行做出前瞻。也可以和旅友们一起讨论各大景点，或者揭露一些不为人知的曲径通幽。<br />
+				<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;旅程，我们都在路上。</p>
+				</div>
+				
+				<div class="iRight">
+					<ul class="article1">
+                                            {volist name="article1" id="vo"}
+						<li>
+							<div class="a11">
+								<b><p class="pAuthor">{$vo.article_author}</p></b>
+								<p class="pTime">____{:date('m/d/Y',$vo.article_update_time)}____</p>
+								<p class="pTit">{$vo.article_title}</p>
+								<div class="pCon">
+                                                                    <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.article_content}</p>
+										
+								</div>
+							</div>
+						</li>
+						{/volist}
+					</ul>
+					<ul class="article2">
+						{volist name="article2" id="vo"}
+						<li>
+							<div class="a21">
+                                                            <b><p class="pAuthor">{$vo.article_author}</p></b>
+								<p class="pTime">____{:date('m/d/Y',$vo.article_update_time)}____</p>
+								<p class="pTit">{$vo.article_title}</p>
+								<div class="pCon">
+									<p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.article_content}</p>
+										
+								</div>
+							</div>
+						</li>
+						{/volist}
+					</ul>
+				</div>
+			</div>
+			
+			<div class="sight">
+				<div class="sightCon">
+					<div class="sLeft">
+						<b><a href="{:url('photo/photoHome')}"><img src="__STATIC__/img/logo/fengjing.png"/></a></b>
+						<div class="imgBottom"></div>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							一千个人就有一千个哈姆雷特。我相信每一个人眼中的风景感受都各不相同。
+							世界这么美，何不去看看。四处走走吧，按一下快门，留下属于你自己的那一缕阳光，
+							那一缕美。<br /><br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;美景，在我的路上。
+						</p>
+					</div>
+					
+					<div class="sRight">
+						<div class="sightPic" > 
+                                                    {volist name="Photo" id="vo"}
+                                                        <img src="__STATIC__/{$vo.photo_src}" title="{$vo.photo_title}" /> 
+                                                    {/volist}
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="talk">
+				<div class="talk_c">
+					<div class="talk_left">
+						<b><img  src="__STATIC__/img/logo/lianxi.png" alt="" /></b>
+						<div class="imgBottom l"></div>
+						<p class="l">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							如果必须的话，可以给我们的发送邮件，提供您的意见和想法。<br /><br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							非常感谢。
+						</p>
+					</div>
+					
+					<div class="talk_right">
+						<div class="messform">
+							<ul>
+								<form method="post" id="send">
+								<li>
+									<p>主题：</p>
+									<input type="text" id="tit" name="tit"  />
+								</li>
+								<li>
+									<p>意见与建议：</p>
+									<textarea id="sugg" name="sugg" rows="3" cols="84" placeholder="最多200个字哦" onkeyup="checkLen(this)"></textarea>
+								</li>
+								<li>
+                                                                    <input id="sendme" name="sendme" class="sendSug" type="button" value="发&nbsp;&nbsp;&nbsp;&nbsp;送"/>
+								</li>
+                                                                </form>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+				
+		
+		</div>
+	
+		{include file="public/footer" /}
+
+	</body>
+</html>
+<script>
+$(document).ready(function(){
+    $('#sendme').click(function(){
+        $.ajax({
+            type:"post",
+            dataType:"json",
+            url:"{:url('vist/vistSend')}?vist_id={$Think.session.vist.vist_id}",
+            data:$("#send").serialize(),
+            success:function(data){
+                if(data.status==0){
+                    alert(data.message);
+                }else{
+                    alert(data.message);
+                }
+            }
+        });
+    });
+});    
+
+</script>
+<script>
+    function checkLen(obj){ 
+        var max = 200;
+        if (obj.value.length > max) {
+            obj.value = obj.value.substring(0,max); 
+        }
+        
+    } 
+</script>

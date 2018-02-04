@@ -1,0 +1,66 @@
+{include file="public/meta"/}
+
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<article class="cl pd-20">
+	<form id="upload" method="post" enctype="multipart/form-data" class="form form-horizontal" action="{:url('photo/photoUploadFile')}">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text"  class="input-text" placeholder="" name="photo_title" id="photo_title">
+			</div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="file" name="image" accept="image/jpg,image/jpeg,image/png"/> <br> <br>
+                                <span>ps:请上传jpg,jpeg,png格式的图片哦~</span>
+			</div>
+		</div>
+		
+		
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" id="button" type="submit" value="&nbsp;&nbsp;上传&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+{include file="public/footerOflay"}
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript">
+//$(document).ready(function(){
+//    $('#button').click(function(){
+//        var formData = new FormData();
+//        formData.append("file", $(this).get(0).files[0]);
+//        $.ajax({
+//            type:"post",
+//            url:"{:url('photoUpload')}",
+//            data:{
+//                
+//                formData:formData,
+//            },
+//            cache: false,
+//            contentType: false,    //不可缺
+//            processData: false,    //不可缺
+//            success:function(data){
+//                if(data.status==0){
+//                    layer.msg(data.message);
+//                }else{
+//                    layer.msg(data.message);
+//                }
+//            }
+//        });
+//    });
+//});
+</script>
+
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

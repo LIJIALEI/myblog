@@ -1,0 +1,59 @@
+{include file="public/header"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/login.css"/>
+        
+        
+        <div class="content">
+            <div class="top">
+                <div class="t_img1"></div>
+                <div class="t_img2"></div>
+            </div >
+            
+            <div class="con_form">
+                <div class="inf"><span class="p1">用户登录</span></div>
+                <form id="vistlogin" method="post">
+                    <ul>
+                        <li>
+                            <div><p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</p></div>
+                            <input class="con_in" type="text" name="loginEmail" id="loginEmail" />
+                        </li>
+                        <li>
+                            <div><p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</p></div>
+                             <input  class="con_in" type="password" name="loginPassword" id="loginPassword"  />
+                        </li>
+                        <li>
+                            <input  type="button" id="deng" class="sub" value="登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录">
+                        </li>
+
+                    </ul>
+                </form>
+                
+            </div>
+        </div>
+        
+        {include file="public/footer"}
+        
+        
+
+    </body>
+    <script>
+        $(document).ready(function(){
+            $('#deng').click(function(){
+                $.ajax({
+                    type:"post",
+                    dataType:"json",
+                    url:"{:url('Vist/vistLogin')}",
+                    data:$('#vistlogin').serialize(),
+                    success:function(data){
+                        if(data.status==1){
+                            alert(data.message);
+                            window.location.href="{:url('index/index')}";
+                        }else{
+                            alert(data.message);
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+</html>
+
