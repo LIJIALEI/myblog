@@ -1,0 +1,170 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+
+/*head*/
+
+.header{
+	
+	padding-top: 2px;
+	padding-bottom: 2px;
+	background-color: #f0efef;
+	z-index: 999;
+	opacity: .65;	  	
+}
+
+.header_in img{
+	width: 50px;
+	height: 50px;
+	margin-left: 20px;
+	
+}
+
+
+.header_ul{
+	float: right;	
+}
+
+
+
+.header_ul li{
+	float: left;
+	padding-top: 15px;
+	padding-right: 25px;
+	
+	
+	
+
+}
+
+.header_ul li a{
+	color: #666666;
+	font: bold 15px Georgia ;
+}
+
+.header_ul li a:hover{
+	color: #a09f9f;
+}
+.header_ul li p{
+	color: #666666;
+	text-align: center;
+	font:  11px Tahoma;
+}
+.sess{
+    position: absolute;
+    top: 23px;
+    left:85px;
+}
+
+.sess  a{
+    color: #666666;
+    font: bold 18px Georgia ;
+
+    
+}
+.sess a:hover{
+	color: #a09f9f;
+}
+
+.footer{
+	
+	height: 175px;
+	background: #333333;
+	border-top: 10px solid #4c4c4c;
+
+
+	
+}
+
+.footer_main{
+	margin: 0 auto;
+	width: 500px;
+	margin-top: 20px;
+	height: 100px;
+}
+.footer_main>div{
+	float: left;
+}
+.footer_main p{
+	color: #8e8e8e;
+	font: 15px Helvetica;
+	
+}
+.footer_main a{
+	
+	color: #8e8e8e;
+	font: 11px Helvetica;
+}
+
+
+.footer_main .ft_center{
+	background: url(../img/logo/wechat.png)no-repeat bottom center;
+	background-size: 70px 70px;
+	width: 100px;
+	height: 110px;
+	margin-left: 120px;
+	
+}
+
+
+
+			/*footer*/
+.footer_main .ft_right{
+	background: url(../img/logo/weibo.png)no-repeat bottom center;
+	background-size: 70px 70px;
+	width: 100px;
+	height: 110px;
+	float: right;
+	
+	
+}
+.ft_center p,.ft_right p{
+	text-align: center;
+	font-size: 11px;
+	
+	
+}
+
+
+
+.ft_p {
+	
+	color: #8e8e8e;
+	font: 11px Helvetica;
+	text-align: center;
+	margin-top: 30px;
+	
+}
+
+.foot{
+    border-top: 10px solid #4c4c4c;
+    height: 50px;
+    width: 100%;
+    padding-top: 15px;
+    background-color: #333333;
+    
+}
+.foot h1{
+    color: #8e8e8e;
+    font: 20px Helvetica;
+    text-align: center;
+    
+}
+.foot div{
+    margin-top: 3px;
+}
+.foot p{
+    color: #8e8e8e;
+    font: 11px Helvetica;
+    text-align: center;  
+}
+

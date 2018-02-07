@@ -1,0 +1,136 @@
+body{
+    background: url(../img/background/photo.jpg) no-repeat ;
+    background-size: 1920px 1080px;
+    background-attachment: fixed;
+}
+
+.content{
+    width: 100%;   
+    height: 100%;   
+    
+}
+.content .top{
+   position: relative;       
+}
+.top .t_img1{
+
+    width: 500px;
+    height: 104px;
+    background: url(../img/logo/fengjing2.png)no-repeat;
+    position: absolute;
+    top: 20px;
+    left: 200px;
+}
+
+.top .t_img2{
+
+    width: 300px;
+    height: 50px;
+    background: url(../img/logo/fengjingEng.png)no-repeat;
+    position: absolute;
+    top: 120px;
+    left: 240px;
+}
+
+.con_form{
+    width: 1400px;
+    height: 600px;
+    float: left;
+    margin-top: 180px;
+    margin-left: 260px;
+    background-color: white;
+    opacity: .85;
+    border-radius: 30px;
+}
+
+.con_form:hover{
+    box-shadow: 15px 15px 10px #888888;
+}
+
+.con_form .inf{
+    margin-top: 45px;
+    margin-left: 15px; 
+
+}
+
+.con_form .p1{
+        
+        font: bold 17px Georgia;
+	color: #666666;
+        
+}
+
+.con_form .p1 a{
+        
+        font: bold 17px Georgia;
+	color: #666666;
+        
+}
+.con_form .p1 a:hover{
+    color:#888888;
+}
+
+.con_form ul{
+    
+    margin:0 auto;
+    margin-top: 50px;
+    width: 1300px;
+
+
+}
+.con_form ul li{    
+
+    margin-left:6px; 
+    display: inline-block;
+}
+
+.con_form ul li p{
+    font:  bold 20px Georgia ;
+    color: #666666;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+.con_form ul li p a{
+    font:  bold 20px Georgia ;
+    color: #666666;
+    
+}
+.con_form ul li p a:hover{
+    color: #888888;
+    cursor: pointer;
+}
+
+
+
+
+
+.pagination{
+    text-align:center;margin-top:20px;margin-bottom: 20px;
+    
+}  
+
+.pagination li{
+    margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;
+    border-radius: 5spx;
+}  
+
+.pagination .active{
+    background-color: #66ccff;color: #fff;
+}  
+.pagination .disabled{
+    color:#66ccff;
+}  
+
+.sigUpload{
+    width: 420px;
+    height: 280px;
+    border-radius: 20px;
+
+}
+.sigUpload:hover{
+    box-shadow: 10px 10px 8px #888888;
+}
+
+

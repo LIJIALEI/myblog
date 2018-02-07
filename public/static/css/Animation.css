@@ -1,0 +1,37 @@
+@keyframes imgRotate{
+	from{
+		transform: rotate(0deg);	
+	}
+	25%{
+		transform: rotate(-15deg);
+	}
+	
+	75%{
+		transform: rotate(15deg);
+	}
+	to{
+		transform: rotate(0deg);	
+	}
+}
+
+
+#header_img:hover{
+	animation: imgRotate 3s linear;
+}
+
+
+
+@keyframes divScale{
+	from{
+		transform: scale(0);
+	}
+	to{
+		transform: scale(1);
+	}
+}
+
+.con_img li:hover div{
+	animation: divScale 1.5s,  linear; 
+}
+
+

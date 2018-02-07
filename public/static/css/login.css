@@ -1,0 +1,126 @@
+body{
+    background: url(../img/background/loginBg.jpg) no-repeat ;
+    background-size: 1920px 920px;
+
+}
+
+.content{
+    width: 100%;   
+    height: 860px;   
+    
+}
+.content .top{
+   position: relative;       
+}
+.top .t_img1{
+
+    width: 300px;
+    height: 104px;
+    background: url(../img/logo/denglu.png)no-repeat;
+    position: absolute;
+    top: 50px;
+    left: 250px;
+}
+
+.top .t_img2{
+
+    width: 300px;
+    height: 50px;
+    background: url(../img/logo/enj.png)no-repeat;
+    position: absolute;
+    top: 130px;
+    left: 270px;
+}
+
+.con_form{
+    width: 700px;
+    height: 450px;
+    float: left;
+    margin-top: 160px;
+    margin-left: 610px;
+    background-color: white;
+    opacity: .85;
+    border-radius: 30px;
+}
+
+.con_form:hover{
+    box-shadow: 15px 15px 10px #888888;
+}
+.con_form .inf{
+    margin-top: 17px;
+    margin-left: 15px; 
+
+}
+
+.con_form .p1{
+        
+        font: bold 17px Georgia;
+	color: #666666;
+        
+}
+.con_form a{
+        font: 15px Georgia;
+	color: #666666;
+        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 2px solid #888888;
+}
+
+.con_form a:hover{
+    text-decoration: underline;
+}
+
+
+.con_form ul{
+
+    width: 500px;
+    margin: 0px auto;
+    margin-top: 70px;
+    
+}
+.con_form ul li{
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 30px;padding-left: 75px;
+
+}
+.con_form ul li div{
+    margin-left: -20px;
+    margin-bottom: 10px;
+}
+.con_form ul li p{
+    font:  bold 22px Georgia ;
+    color: #666666;
+}
+
+.con_form ul li .con_in {
+        width: 350px;
+	height: 30px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 2px solid dimgrey;
+	text-indent: 0.5em;
+        margin-left: 40px;
+}
+.con_form ul li .con_in:focus{
+        outline: none;
+	border-bottom: 2px solid #333333;
+}
+
+.con_form ul li .sub{
+        display: block;
+	width: 250px;
+	height: 40px;
+	font: bold 23px Helvetica;
+	line-height: 40px;
+	text-align: center;
+	color: #333333; 
+        margin-left: 140px;
+}
+
+
+
+
+
+

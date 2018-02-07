@@ -1,0 +1,155 @@
+body{
+    background: url(../img/background/article.jpg) no-repeat ;
+    background-size: 1920px 1080px;
+    background-attachment: fixed;
+}
+
+.content{
+    width: 100%;   
+    height: 100%;   
+    
+}
+.content .top{
+   position: relative;       
+}
+.top .t_img1{
+
+    width: 500px;
+    height: 104px;
+    background: url(../img/logo/article.png)no-repeat;
+    position: absolute;
+    top: 70px;
+    left: 200px;
+}
+
+.top .t_img2{
+
+    width: 300px;
+    height: 50px;
+    background: url(../img/logo/articleEng.png)no-repeat;
+    position: absolute;
+    top: 170px;
+    left: 240px;
+}
+
+.con_form{
+    width: 700px;
+
+    float: left;
+    margin-top: 200px;
+    margin-left: 610px;
+    background-color: white;
+    opacity: .85;
+    border-radius: 30px;
+    
+}
+
+.con_form:hover{
+    box-shadow: 15px 15px 10px #888888;
+}
+
+.con_form .inf{
+    margin-top: 17px;
+    margin-left: 15px; 
+
+}
+
+.con_form .p1{
+        
+        font: bold 17px Georgia;
+	color: #666666;
+        
+}
+
+.con_form .p1 a{
+        
+        font: bold 17px Georgia;
+	color: #666666;
+        
+}
+.con_form .p1 a:hover{
+    color:#888888;
+}
+
+.ar_{
+    width: 550px;
+    margin: 0 auto;
+}
+
+.ar_title{
+    color: #666666;
+    margin-top: 15px;
+    text-align: center;
+    font:  bold 25px Georgia ;
+}
+
+.ar_content{
+    color: #666666;
+    margin: 20px auto;
+    word-wrap:break-word; 
+    word-break:break-all; 
+    font:  bold 23px Georgia ;
+}
+
+.ar_info{
+    color: #666666;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    float:right;
+    font:   15px Georgia ;
+    
+
+}
+
+.ar_info span{
+    margin-top: 5px;
+    float: right;
+}
+
+.comment{
+
+    font:  bold 17px Georgia ;color: #666666;
+    margin-top: 140px;
+    margin-bottom: 30px;
+    
+
+}
+.comment span{
+    font:   15px Georgia ;color: #666666;
+    float: right;
+}
+
+.comment li{
+    margin-top: 6px;
+    margin-bottom: 6px;
+    word-wrap:break-word; 
+    word-break:break-all; 
+
+}
+.comment li span a{
+    font:   15px Georgia ;color: #666666;
+}
+
+.comment li span a:hover{
+    color:#888888;
+}
+
+
+.pagination{
+    text-align:center;margin-top:50px;margin-bottom: 20px;
+    
+}  
+
+.pagination li{
+    margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;
+    border-radius: 5spx;
+}  
+
+.pagination .active{
+    background-color: #66ccff;color: #fff;
+}  
+.pagination .disabled{
+    color:#66ccff;
+}  
+
+

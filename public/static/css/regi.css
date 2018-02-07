@@ -1,0 +1,215 @@
+body{
+	background: url(../img/background/regBg.jpg) no-repeat ;
+	background-size: 1920px 700px;
+
+}
+.content{
+	position: relative;
+	height: 650px;
+	
+}
+
+
+.content .wel{
+	float: left;
+	margin-top: 50px;
+}
+
+
+.content .img1{
+	width: 300px;
+	height: 104px;
+	background: url(../img/logo/wel.png);
+	margin-left: 400px;
+}
+
+
+.content  .img2{
+	width: 300px;
+	height: 104px;
+	background: url(../img/logo/joinus.png);
+	margin-left: 500px;
+}
+
+.content .infmForm{
+	float: right;
+	right: 100px;
+	top: 80px;
+	position: absolute;
+	
+}
+.content .infmForm ul{
+	float: right;
+	border-radius: 5px;
+	padding: 20px;
+	
+	
+}
+.content .infmForm ul li{
+	padding-top: 20px;
+	
+
+}
+
+.content .infmForm ul li p{
+	font:  bold 18px Georgia ;
+	color: #666666;
+	
+}
+.content .infmForm ul li .warnning{
+        font:  bold 18px Georgia ;
+	color: red;
+        text-align: center;
+}
+
+ #username,#password,#checkPassword,#email{
+	width: 250px;
+	height: 30px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 2px solid dimgrey;
+	text-indent: 0.5em;
+
+	
+}
+#username:focus,#password:focus,#checkPassword:focus,#email:focus{
+	outline: none;
+	border-bottom: 2px solid #333333;
+}
+.content .infmForm  #agree{
+	margin-top: 5px;
+	float: left;
+}
+
+.content .infmForm .p1 {
+	font: 8px Georgia;
+	margin-top: 5px;
+	margin-left: 16px;
+	color: #666666;
+}
+
+
+
+.content .infmForm .p1 a{
+	text-decoration: underline;
+	color: #666666;
+}
+
+.content .infmForm .p1 a:hover{
+	color: #333333;
+}
+
+.content .infmForm .p1 a:focus{
+	color: #333333;
+}
+
+.content .infmForm .sub{
+	display: block;
+	width: 250px;
+	height: 40px;
+	font: bold 25px Helvetica;
+	line-height: 40px;
+	text-align: center;
+	color: #333333;
+	
+	
+}
+
+.content .infmForm .sub:hover{
+	color: white;
+	background: #333333;
+        cursor: pointer;
+}
+
+
+
+.con{
+	
+	height:  700px;
+	width: 1100px;
+	margin: 0 auto;
+}
+.con_p{
+	width: 400px;
+	float: left;
+	margin-top: 200px;
+}
+
+.con_p b img{
+	width: 700px;
+	height: 60px;
+}
+.con_p .imgBottom{
+	width: 150px;
+	border-bottom: 3px solid #D6D6D6;
+	border-radius: 5px;
+	margin-top: 20px;
+	margin-left:30px;
+}
+
+.con_p  p{
+	margin-top: 30px;
+	margin-left:22px ;
+	font:  18px Georgia ;
+	color: dimgrey;
+}
+
+.con_img{
+	width: 500px;
+	float: right;
+	margin-top: 50px;
+}
+
+.con_img ul{
+	float: left;
+}
+
+.con_img ul li{
+	height: 300px;
+	width: 250px;
+}
+.con_img ul li div{
+	width: 220px;
+	height: 300px;
+	margin-left: 15px;
+
+}
+
+.con_img li:hover div{
+	background: white;
+	filter:alpha(opacity=8);
+    -moz-opacity:0.8;
+    opacity:0.8;
+}
+
+.con_img ul li div span{
+	display: none;
+}
+
+.con_img ul li:hover  span{
+	display: block;
+	font:  bold 20px Helvetica;
+	color: black;
+	text-align: center;
+	line-height: 300px;
+	
+}
+
+
+
+.con_img ul #li1{
+	background: url(../img/logo/wpef.png)no-repeat 0px 0px;
+	
+}
+.con_img ul #li2{
+	background: url(../img/logo/wpef.png)no-repeat -250px 0px;
+	
+}
+.con_img ul #li3{
+	background: url(../img/logo/wpef.png)no-repeat 0px -300px ;
+	
+}
+.con_img ul #li4{
+	background: url(../img/logo/wpef.png)no-repeat -250px -300px;
+	
+}

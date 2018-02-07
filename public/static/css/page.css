@@ -1,0 +1,16 @@
+.pagination{
+    text-align:center;margin-top:20px;margin-bottom: 20px;
+    
+}  
+
+.pagination li{
+    margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;
+    border-radius: 5spx;
+}  
+
+.pagination .active{
+    background-color: #66ccff;color: #fff;
+}  
+.pagination .disabled{
+    color:#66ccff;
+}  

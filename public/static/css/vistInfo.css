@@ -1,0 +1,108 @@
+body{
+    background: url(../img/background/vistInfo.jpg) no-repeat ;
+    background-size: 1920px 920px;
+
+}
+
+.content{
+    width: 100%;   
+    height: 860px;   
+    
+}
+.content .top{
+   position: relative;       
+}
+.top .t_img1{
+
+    width: 500px;
+    height: 104px;
+    background: url(../img/logo/vistInfo.png)no-repeat;
+    position: absolute;
+    top: 70px;
+    left: 200px;
+}
+
+.top .t_img2{
+
+    width: 300px;
+    height: 50px;
+    background: url(../img/logo/engInfo.png)no-repeat;
+    position: absolute;
+    top: 170px;
+    left: 240px;
+}
+
+.con_form{
+    width: 700px;
+    float: left;
+    margin-top: 200px;
+    margin-left: 610px;
+    background-color: white;
+    opacity: .85;
+    border-radius: 30px;
+}
+
+.con_form:hover{
+    box-shadow: 15px 15px 10px #888888;
+}
+.con_form .inf{
+    margin-top: 17px;
+    margin-left: 15px; 
+
+}
+
+.con_form .p1{
+        
+        font: bold 17px Georgia;
+	color: #666666;
+        
+}
+.con_form .p1 a{
+        
+        font: bold 17px Georgia;
+	color: #666666;
+        
+}
+.con_form .p1 a:hover{
+    color:#888888;
+}
+
+.con_form ul{
+    width: 500px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+
+}
+
+.con_form ul li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+.con_form ul li .infoP1{
+    font: bold 25px Georgia;
+    color: #666666;
+}
+
+.infoP1 span{
+    font:  22px Georgia;
+    color: #666666; 
+}
+.con_form  .arr{
+    width: 400px;
+    margin-top: 10px;
+}
+
+.con_form .arr a{
+    font: bold 22px Georgia;
+    color: #666666;
+}
+
+.con_form .arr a:hover{
+    color:#888888;
+}
+
+
+
+
