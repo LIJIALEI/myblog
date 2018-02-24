@@ -9,14 +9,14 @@ class Index extends Base{
         $article2=db('article')->order('look_count desc')->limit(2,2)->select();
 //        dump($article1);echo'————';
 //        dump($article2);die;
-        $Photo=db('Photo')->select();
+        $Photo=db('Photo')->order('photo_look_count desc')->limit(0,5)->select();
         $data=[
                 'title'=>'欢迎来到我的博客',
                 'Photo'=>$Photo,
                 'article1'=>$article1,
                 'article2'=>$article2,
-            ];
+            ]; 
         $this->assign($data);
-        return $this->fetch();
+        return $this->fetch(); 
     }
 }

@@ -10,9 +10,9 @@
                 <div class="t_img1"></div>
                 <div class="t_img2"></div>
             </div >
-            
+             
             <div class="con_form">
-                <div class="inf"><span class="p1"><a href="{:url('Article/articleHome')}">所有文章</a>|<a href="{:url('Article/articleWrite')}">发表文章</a></span></div>      
+                <div class="inf"><span class="p1"><a href="{:url('Article/articleHome')}">所有文章</a>|<a href="javascript:;" onclick="articleWrite()">发表文章</a></span></div>      
                 <form id="write">
                 <ul>
                     <li>
@@ -20,18 +20,20 @@
                     </li>
                     <li>
                         <p class='infoP1'>内容：</p>
-                        <textarea cols=""  rows="" name="article_content" id='article_content'></textarea>
+                        <script id="editor" name="article_content" type="text/plain" style="height: 450px;" ></script> 
                     </li>
-                    <li>
+                    <li class="buttonli">
                         <input type="button" id="button" name="button" value="提    交">
                     </li>
                 </ul>  
                 </form>    
             </div>
         </div>
-        
+        <script type="text/javascript" src="__STATIC__/lib/ueditor/1.4.3/ueditor.config.js"></script>
+    <script type="text/javascript" src="__STATIC__/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+    <script type="text/javascript" src="__STATIC__/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
         {include file="public/footer"}
-        
+         
         <script>
         $('#button').click(function(){
                 $.ajax({
@@ -52,5 +54,19 @@
     
             
         </script>
-
+        <script type="text/javascript">
+            $(function(){
+                var ue = UE.getEditor('editor');
+            });
+        </script>
+        <script type="text/javascript">
+            function articleWrite(){
+                var url=window.location.href;
+                if(url=="http://www.lvcheng.com/index/article/articlewrite.html"){
+                    layer.msg('您已经在发表页面了');
+                }else{
+                    window.location.href="{:url('Article/articleWrite')}";
+                }
+            }
+        </script>
     </body>

@@ -12,32 +12,92 @@
             </div >
             
             <div class="con_form">
-                <div class="inf"><span class="p1"><a  href="{:url('photo/photoHome')}">所有图片|</a><a href="javascript:;" onclick="photo_upload('上传图片','photoUpload.html','','800','300')">上传图片</a></span></div>      
+            
+                <div class="inf">
+                    <span class="p1">
+                        <a  href="javascript:;" onclick="List(0)">默认排序|</a>
+                        <a href="javascript:;" onclick="List(1)">热度排序|</a>
+                        <a href="javascript:;" onclick="photo_upload('上传图片','photoUpload.html','{$vist.uploadPhoto}','800','300')">上传图片</a>
+                    </span>
+                </div>      
                 <ul>
                     {volist name="photo" id="vo"}
                     <li>
                         <img class="sigUpload" src="__STATIC__/{$vo.photo_src}" onclick="photo_show('{$vo.photo_title}','photoShow.html?photo_id={$vo.photo_id}','{$vo.photo_id}','1600','800')">
-                        <p><a href="javascript:;" onclick="photo_show('{$vo.photo_title}','photoShow.html?photo_id={$vo.photo_id}','{$vo.photo_id}','1600','800')">{$vo.photo_title}</a></p>
+                        <p><a href="javascript:;" onclick="photo_show('{$vo.photo_title}','photoShow.html?photo_id={$vo.photo_id}')">{$vo.photo_title}</a></p>
                         <p><span>上传者：{$vo.photo_er}</span></p>
+                        <p><span>浏览次数：{$vo.photo_look_count}</span></p>
+                        <p><span>上传时间：{:date('Y/m/d,H:i:s',$vo.photo_upload_time)}</span></p>
                     </li>
                     {/volist} 
                     {$photo->render()}
                 </ul>
+            
+                
                 
             </div>
            
         </div>
         
         {include file="public/footer"}
+
+<script>
+    function photo_show(title,url,id,w,h){
+        layer.open({
+            title:'风景详情',
+            type:2,
+            content:url,
+            area:['1605px','800px'],
+            end:function(){
+                window.location.href="{:url('photo/photoHome')}";
+            }
+        });  
+    }
+    
+    function photo_upload(title,url,vist_role){
+        if(vist_role==0){
+            layer.msg('您无权上传');
+        }else{
+            layer.open({
+                title:'上传',
+                type:2,
+                content:url,
+                area:['1000px','300px'],
+                end:function(){
+                    window.location.href="{:url('photo/photoHome')}";
+                }
+            });  
+        }
         
-        <script>
-            function photo_show(title,url,id,w,h){
-                layer_show(title,url,w,h);    
-            }
-            
-            function photo_upload(title,url,id,w,h){
-                layer_show(title,url,w,h);    
-            }
-        </script>
+    }
+</script>
+<script type="text/javascript">
+    function List(num){
+        var url=window.location.href;
+        if(url.indexOf("1=1")>-1){
+          if(url.indexOf("page=")>-1){
+            url = url.replace(/page=\d*/, '');
+          }
+          if(url.indexOf("List=")>-1){
+            url = url.replace(/List=\d*/, 'List='+num);
+          }else{
+            url=url+"&List="+num;
+          }  
+        }else{
+          url=url+"?1=1";
+          if(url.indexOf("page=")>-1){
+            url = url.replace(/page=\d*/, '');
+          }
+          if(url.indexOf("List=")>-1){
+            url = url.replace(/List=\d*/, 'List='+num);
+          }else{
+            url=url+"&List="+num;
+          }  
+        }
+
+        window.location.href=url;
+    }
+
+</script>
 
     </body>

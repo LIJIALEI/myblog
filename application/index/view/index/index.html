@@ -26,14 +26,14 @@
 				
 				<div class="iRight">
 					<ul class="article1">
-                                            {volist name="article1" id="vo"}
+                        {volist name="article1" id="vo"}
 						<li>
 							<div class="a11">
 								<b><p class="pAuthor">{$vo.article_author}</p></b>
 								<p class="pTime">____{:date('m/d/Y',$vo.article_update_time)}____</p>
-								<p class="pTit">{$vo.article_title}</p>
+								<a href="{:url('article/articleShow')}?article_id={$vo.article_id}"><p class="pTit">{$vo.article_title}</p></a>
 								<div class="pCon">
-                                                                    <p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.article_content}</p>
+                                <p class="content">{$vo.article_content|mb_substr=0,50,'utf-8'}...</p>
 										
 								</div>
 							</div>
@@ -44,11 +44,11 @@
 						{volist name="article2" id="vo"}
 						<li>
 							<div class="a21">
-                                                            <b><p class="pAuthor">{$vo.article_author}</p></b>
+                                <b><p class="pAuthor">{$vo.article_author}</p></b>
 								<p class="pTime">____{:date('m/d/Y',$vo.article_update_time)}____</p>
-								<p class="pTit">{$vo.article_title}</p>
+								<a href="{:url('article/articleShow')}?article_id={$vo.article_id}"><p class="pTit">{$vo.article_title}</p></a>
 								<div class="pCon">
-									<p class="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.article_content}</p>
+									<p class="content">{$vo.article_content|mb_substr=0,50,'utf-8'}...</p>
 										
 								</div>
 							</div>
@@ -73,9 +73,9 @@
 					
 					<div class="sRight">
 						<div class="sightPic" > 
-                                                    {volist name="Photo" id="vo"}
-                                                        <img src="__STATIC__/{$vo.photo_src}" title="{$vo.photo_title}" /> 
-                                                    {/volist}
+                            {volist name="Photo" id="vo"}
+                                <img src="__STATIC__/{$vo.photo_src}" title="{$vo.photo_title}" /> 
+                            {/volist}
 						</div>
 					</div>
 				</div>

@@ -30,7 +30,10 @@
 <div class="page-container">
 	
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
-	  <span class="r">共有数据：<strong>{$count}</strong> 条</span> 
+		<a href="javascript:;" onclick="datadel('{$admin.delPhoto}')" id="bdel" class="btn btn-danger radius">
+			<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
+		</a>
+	  	<span class="r">共有数据：<strong>{$count}</strong> 条</span> 
 	</div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
@@ -38,6 +41,7 @@
 				<th scope="col" colspan="9">图片列表</th>
 			</tr>
 			<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value="" id="check_all_box"></th>
 				<th width="40">图片ID</th>
 				<th width="150">文章标题</th>
 				<th width="200">上传者</th>
@@ -49,7 +53,7 @@
 		<tbody>
 			{volist name='photo' id='vo'}
 			<tr class="text-c">
-                
+                <td><input type="checkbox" value="{$vo.photo_id}" name="photo_id"></td>
                 <td>{$vo.photo_id}</td>
                 <td>{$vo.photo_title}</td>
                 <td>{$vo.photo_er}</td>
@@ -98,6 +102,44 @@ function photo_del(obj,user_role,id){
             layer.msg('无权删除');
         } 
 }
+
+function datadel(user_role){
+	if(user_role==1){
+		$('#bdel').click(function() {
+			var check_boxes = $("input[name='photo_id']:checked");
+			if(check_boxes.length<=0){
+				layer.msg('您并未选择删除项');
+			}else{
+				layer.confirm('确认要删除吗？',function(index){
+					var dropIds = new Array();
+					check_boxes.each(function(){
+						dropIds.push($(this).val());
+					});
+					$.ajax({
+						type:'post',
+						dataType:'json',
+						url:"{:url('photo/photoAllDel')}",
+						data:{
+							photo_id:dropIds
+						},
+						success:function(data){
+							if(data.status==0){
+		                    	layer.msg(data.message);
+			                }else{
+			                    layer.msg(data.message);
+			                }
+						}
+					});
+				});
+				
+			}
+
+			
+		});
+    }else{
+        layer.msg('无权删除');
+    }
+}
 </script>
 </body>
-</html>
+</html>  

@@ -28,4 +28,27 @@ class Photo extends Base{
             $this->error('删除失败','photo/photoList');
         }
     }
+
+    public function photoAllDel(){
+        $photo=$_POST['photo_id'];
+        // dump($photo);die;
+        // $photo_id=[];
+        // for($n=0;)
+
+        for($i=0;$i<sizeof($photo);$i++){
+            if(db('photo')->where('photo_id',$photo[$i])->delete()){
+                $status=1;
+                $msg="删除照片成功";
+            }else{
+                $status=0;
+                $msg="连接数据库失败";
+            }
+
+        }
+        return [
+            'status'=>$status,
+            'message'=>$msg,
+        ];
+
+    }
 }

@@ -33,15 +33,11 @@ body{
 }
 
 .con_form{
-    width: 700px;
-
-    float: left;
-    margin-top: 200px;
-    margin-left: 610px;
+    width: 850px;   
+    margin:150px auto;
     background-color: white;
     opacity: .85;
     border-radius: 30px;
-    
 }
 
 .con_form:hover{
@@ -49,7 +45,8 @@ body{
 }
 
 .con_form .inf{
-    margin-top: 17px;
+
+    padding-top:15px; 
     margin-left: 15px; 
 
 }
@@ -73,7 +70,8 @@ body{
 
 .ar_{
     width: 550px;
-    margin: 0 auto;
+
+    margin: 30 auto;
 }
 
 .ar_title{
@@ -110,7 +108,7 @@ body{
 
     font:  bold 17px Georgia ;color: #666666;
     margin-top: 140px;
-    margin-bottom: 30px;
+    margin-bottom: 300px;
     
 
 }
@@ -123,7 +121,8 @@ body{
     margin-top: 6px;
     margin-bottom: 6px;
     word-wrap:break-word; 
-    word-break:break-all; 
+    word-break:break-all;
+    padding-bottom:10px;  
 
 }
 .comment li span a{
@@ -132,17 +131,20 @@ body{
 
 .comment li span a:hover{
     color:#888888;
+
 }
 
 
 .pagination{
     text-align:center;margin-top:50px;margin-bottom: 20px;
+    padding-bottom:  20px;
     
 }  
 
 .pagination li{
     margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;
     border-radius: 5spx;
+
 }  
 
 .pagination .active{
@@ -152,4 +154,8 @@ body{
     color:#66ccff;
 }  
 
+
+.ar_infodiv{
+    height: 80px;
+}
 

@@ -24,9 +24,13 @@
                     {if condition="$artArr neq null"}
                     <li><p class='infoP1'>发表过的文章：</p>
                         <div class="arr">
-                            {volist name="artArr" id="vo"}
-                            <a href="{:url('article/articleShow')}?article_id={$vo.article_id}">{$vo.article_title}</a> 
-                            {/volist}
+                           
+                                {volist name="artArr" id="vo"}
+                                <div class="article_info"> 
+                                    <a href="{:url('article/articleShow')}?article_id={$vo.article_id}"><<{$vo.article_title}>></a> 
+                                </div> 
+                               {/volist}
+                           
                         </div>
                     </li>
                     {/if}
@@ -38,11 +42,27 @@
         
         <script>
             function vist_edit(title,url,id,w,h){
-                layer_show(title,url,w,h);    
+                layer.open({
+                    title:'信息修改',
+                    type:2,
+                    content:url,
+                    area:['900px','500px'],
+                    end:function(){
+                        window.location.href="{:url('vist/vistInfo')}";
+                    }
+                });  
             }
             
             function vistChangePwd(title,url,id,w,h){
-                layer_show(title,url,w,h);    
+                layer.open({
+                    title:'修改密码',
+                    type:2,
+                    content:url,
+                    area:['900px','350px'],
+                    end:function(){
+                        window.location.href="{:url('vist/vistInfo')}";
+                    }
+                });  
             }
             
         </script>

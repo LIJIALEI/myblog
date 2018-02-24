@@ -141,7 +141,7 @@ class Vist extends Base{
    //游客信息修改
     public function vistEdit(){
         if(request()->isAjax()){
-            $vist= Session::get('vist');
+            $vist= Session::get('vist'); 
             $res=db('vist')->where('vist_id',$vist['vist_id'])->find();
             $input=input('post.');
             $validate= validate('Vist');
@@ -317,6 +317,9 @@ class Vist extends Base{
             $this->error('你不是文章的主人怎么可以删除');
         }else{
             if($vist_role['commentDel']==1){
+                $comment_count=$article['comment_count']-1;
+                $upd=['comment_count'=>$comment_count];
+                db('article')->where('article_id',$article_id)->setField($upd);
                 if(db('comment')->where('comment_id',$comment_id)->delete()){
                     $this->success('删除成功');
                 }else{

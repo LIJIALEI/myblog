@@ -8,30 +8,58 @@ use think\Session;
 class Photo extends Base{
     //风景首页
     public function photoHome(){
-        
-        $photo=db('Photo')->order('photo_upload_time desc')->paginate(3);
+        $vist=Session::get('vist');
+        $res=db('vist_role')->where('vist_id',$vist['vist_id'])->find();
+        //判断排列条件
+        if(!empty($_GET['List'])){
+            $list=$_GET['List'];
+        }else{
+            $list=0;
+        }
+
+        $photo=db('Photo');
+        if($list==0){
+            $photo=$photo->order('photo_upload_time desc');
+        }
+        else if($list==1){
+            $photo=$photo->order('photo_look_count desc');
+        }
+
+        $photo=$photo->paginate(3,false,['query' => request()->param()]);
         $data=[
             'title'=>'风景相册',
             'photo'=>$photo,
+            'vist'=>$res
         ];
         $this->assign($data);
         return $this->fetch();
     }
     
+
+
     //风景显示
     public function photoShow(){
         $photo_id=$_GET['photo_id'];
         $photo=db('photo')->where('photo_id',$photo_id)->find();
+        $upd=[
+            'photo_look_count'=>$photo['photo_look_count']+1
+        ];
+        db('photo')->where('photo_id',$photo_id)->setField($upd);
         $data=[
             'photo'=>$photo,
         ];
         $this->assign($data);
         return $this->fetch();
     }
+
+
+
+
     
     //图片上传
     public function photoUpload(){
-        
+       
+
         
         return $this->fetch();
     }

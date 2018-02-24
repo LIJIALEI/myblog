@@ -29,21 +29,14 @@ class Article extends Base{
                 $status=0;
                 $message=$validate->getError();
             }else{
-                $pattern = array(
-                    '/ /',  //半角下空格
-                    '/　/',  //全角下空格
-                    '/\r\n/',   //window 下换行符
-                    '/\n/', //Linux && Unix 下换行符
-                );
-                $replace = array('&nbsp;','&nbsp;','<br />','<br />');
-                $article_content = preg_replace($pattern, $replace, $input['article_content']);
+               
 
                 $time=time();
                 $upd=[
                     'vist_author_id'=>$vist['vist_id'],
                     'article_author'=>$vist['vist_name'],
                     'article_title'=>$input['article_title'],
-                    'article_content'=>$article_content,
+                    'article_content'=>$input['article_content'],
                     'article_create_time'=>$time,
                     'article_update_time'=>$time,
                 ];

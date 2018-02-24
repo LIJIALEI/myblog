@@ -40,4 +40,38 @@ class Article extends Base{
         
         
     }
+
+    //批量删除
+    public function articleAllDel(){
+    	$article=$_POST['article_id'];
+    	// dump($article);die;
+    	// $article_id=[];
+    	// for($n=0;)
+
+    	for($i=0;$i<sizeof($article);$i++){
+    		if(db('article')->where('article_id',$article[$i])->delete()){
+    			if(db('comment')->where('article_id',$article[$i])->find()){
+    				db('comment')->where('article_id',$article[$i])->delete();
+    				$status=1;
+    				$msg="删除成功，文章连同评论";
+    			}else{
+    				$status=1;
+    				$msg="文章删除成功";
+    			}
+    		}else{
+    			$status=0;
+				$msg="连接数据库失败";
+    		}
+
+    	}
+    	return [
+    		'status'=>$status,
+    		'message'=>$msg,
+    	];
+
+
+    }
+
+
+
 }
