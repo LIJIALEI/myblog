@@ -40,6 +40,32 @@ class Comment extends Base{
         }       
     }
 
+     //批量删除
+    public function commentAllDel(){
+        $comment=$_POST['comment_id'];
+        // dump($comment);die;
+        for($i=0;$i<sizeof($comment);$i++){
+            $resCom=db('comment')->where('comment_id',$comment[$i])->find();
+            $resArt=db('article')->where('article_id',$resCom['article_id'])->find();
+            $upd=['comment_count'=>$resArt['comment_count']-1];
+            if((db('comment')->where('comment_id',$comment[$i])->delete())&&(db('article')->where('article_id',$resCom['article_id'])->setField($upd))){
+                $status=1;
+                $msg='评论删除成功';
+            }else{
+                $status=0;
+                $msg='连接超时';
+            }
+
+        }
+        return [
+            'status'=>$status,
+            'message'=>$msg,
+        ];
+
+
+    }
+
+
 
     //意见反馈
     public function suggestionList(){
@@ -61,5 +87,27 @@ class Comment extends Base{
         } else {
             $this->error('连接超时');
         }
+    }
+
+     //批量删除
+    public function suggAllDel(){
+        $suggestion=$_POST['suggestion_id'];
+        // dump($comment);die;
+        for($i=0;$i<sizeof($suggestion);$i++){
+            if(db('suggestion')->where('suggestion_id',$suggestion[$i])->delete()){
+                $status=1;
+                $msg='意见删除成功';
+            } else {
+                $status=0;
+                $msg='连接超时';
+            }
+
+        }
+        return [
+            'status'=>$status,
+            'message'=>$msg,
+        ];
+
+
     }
 }

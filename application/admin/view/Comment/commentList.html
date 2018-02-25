@@ -30,7 +30,10 @@
 <div class="page-container">
 	
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
-	  <span class="r">共有数据：<strong>{$count}</strong> 条</span> 
+		<a href="javascript:;" onclick="datadel('{$admin.delComment}')" id="bdel" class="btn btn-danger radius">
+			<i class="Hui-iconfont">&#xe6e2;</i> 批量删除 
+		</a>
+	  	<span class="r">共有数据：<strong>{$count}</strong> 条</span> 
 	</div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
@@ -38,10 +41,11 @@
 				<th scope="col" colspan="9">评论列表</th>
 			</tr>
 			<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value="" id="check_all_box"></th>
 				<th width="40">文章ID</th>
 				<th width="150">文章名</th>
 				<th width="200">评论作者</th>
-                                        <th width="150">评论内容</th>
+                <th width="150">评论内容</th>
 				<th width="200">评论时间</th>
 				<th width="100">操作</th>
 			</tr>
@@ -49,7 +53,7 @@
 		<tbody>
 			{volist name='comment' id='vo'}
 			<tr class="text-c">
-                                        
+                <td><input type="checkbox" value="{$vo.comment_id}" name="comment_id"></td>            
                 <td>{$vo.article_id}</td>
                 <td>{$vo.article_title}</td>
                 <td>{$vo.vist_name}</td>
@@ -97,6 +101,44 @@ function comment_del(obj,admin_role,comment_id,article_id){
         } 
 
 	
+}
+
+function datadel(user_role){
+	if(user_role==1){
+		$('#bdel').click(function() {
+			var check_boxes = $("input[name='comment_id']:checked");
+			if(check_boxes.length<=0){
+				layer.msg('您并未选择删除项');
+			}else{
+				layer.confirm('确认要删除吗？',function(index){
+					var dropIds = new Array();
+					check_boxes.each(function(){
+						dropIds.push($(this).val());
+					});
+					$.ajax({
+						type:'post',
+						dataType:'json',
+						url:"{:url('comment/commentAllDel')}",
+						data:{
+							comment_id:dropIds 
+						},
+						success:function(data){
+							if(data.status==0){
+		                    	layer.msg(data.message);
+			                }else{
+			                    layer.msg(data.message);
+			                }
+						}
+					});
+				});
+				
+			}
+
+			
+		});
+    }else{
+        layer.msg('无权删除');
+    }
 }
 
 
