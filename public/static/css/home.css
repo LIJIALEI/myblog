@@ -30,10 +30,11 @@ body{
 
 
 .container .idea{
-	width: 1200px;
+	width: 100%;
 	height: 900px;
 	margin: 0 auto;
 	margin-top: 650px;
+
 }
 
 .container .idea .title{
@@ -54,7 +55,8 @@ body{
 	width: 300px;
 	float: left;
 	margin-top: 125px;
-	margin-left: 50px;
+	margin-left: 397px;
+
 }
 
 .container .idea .iLeft b{
@@ -82,6 +84,7 @@ body{
 	height: 600px;
 	float: right;
 	margin-top: 50px;
+	margin-right: 380px;
 	
 	
 }
@@ -161,6 +164,7 @@ body{
 	background: #f6f6f6;
 	border-top: 2px solid #edecec;
 	border-bottom: 2px solid #edecec;
+
 }
 
 .sight .sightCon{
