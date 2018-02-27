@@ -6,7 +6,6 @@ body{
 
 .content{
     width: 100%;   
-    height: 100%;   
     
 }
 .content .top{
@@ -154,8 +153,13 @@ body{
     color:#66ccff;
 }  
 
-
+ 
 .ar_infodiv{
     height: 80px;
+}
+
+.clear{
+    position: absolute;
+    bottom: 0;
 }
 

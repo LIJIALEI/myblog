@@ -313,22 +313,20 @@ class Vist extends Base{
 
         $article=db('article')->where('article_id',$article_id)->find();
         $vist_role=db('vist_role')->where('vist_id',$vist['vist_id'])->find();
-        if($vist['vist_id']!=$article['vist_author_id']){
-            $this->error('你不是文章的主人怎么可以删除');
-        }else{
-            if($vist_role['commentDel']==1){
-                $comment_count=$article['comment_count']-1;
-                $upd=['comment_count'=>$comment_count];
-                db('article')->where('article_id',$article_id)->setField($upd);
-                if(db('comment')->where('comment_id',$comment_id)->delete()){
-                    $this->success('删除成功');
-                }else{
-                    $this->error('连接超时');
-                }
+      
+        if($vist_role['commentDel']==1){
+            $comment_count=$article['comment_count']-1;
+            $upd=['comment_count'=>$comment_count];
+            db('article')->where('article_id',$article_id)->setField($upd);
+            if(db('comment')->where('comment_id',$comment_id)->delete()){
+                $this->success('删除成功');
             }else{
-                $this->error('抱歉你不能删除');
+                $this->error('连接超时');
             }
+        }else{
+            $this->error('抱歉你不能删除');
         }
+        
         
         
     }
@@ -371,6 +369,32 @@ class Vist extends Base{
             ];
             
         }
+    }
+
+    //他人信息
+    public function vistOthInfo(){
+        $vist_id=$_GET['vist_id'];
+        $res=db('vist')->where('vist_id',$vist_id)->find();
+       
+        $artiRes=db('vist')->where('vist_id',$vist_id)->alias('v')->join('article a','v.vist_id = a.vist_author_id')->select();
+       if(!empty($artiRes)){
+            foreach ($artiRes as $key => $value) {
+               $artArr[$key]=$value;
+            }  
+            
+        }else{
+            $artArr="";
+        }
+        
+
+        $data=[
+                'title'=>'用户信息中心',
+                'vist'=>$res, 
+                
+              ];
+        $this->assign($data);
+        $this->assign('artArr',$artArr);
+        return $this->fetch();
     }
     
     

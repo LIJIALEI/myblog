@@ -1,0 +1,70 @@
+{include file="public/header"}
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/vistInfo.css"/>
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__STATIC__/static/h-ui.admin/js/H-ui.admin.page.js"></script>        
+        
+        <div class="content">
+            <div class="top">
+                <div class="t_img1"></div>
+                <div class="t_img2"></div>
+            </div >
+            
+            <div class="con_form">
+                <div class="inf"><span class="p1">所有信息</span></div>      
+                <ul>
+                    <li><p class='infoP1'>用户邮箱：<span>{$vist.vist_email}</span></p></li>
+                    <li><p class='infoP1'>用户名：<span>{$vist.vist_name}</span></p></li>
+                    <li><p class='infoP1'>用户等级：<span>{$vist.vist_role|getVistRole}</span></p></li>
+                    <li><p class='infoP1'>年龄：<span>{$vist.vist_age}</span></p></li>
+                    <li><p class='infoP1'>上次登录时间：<span>{:date('Y/m/d  ,  H:i:s',$vist.vist_login_time)}</span></p></li>
+                    <li><p class='infoP1'>登录次数：<span>{$vist.vist_login_count}</span></p></li>
+                    <li><p class='infoP1'>个人简介：<span>{$vist.vist_des}</span></p></li>
+                    {if condition="$artArr neq null"}
+                    <li><p class='infoP1'>发表过的文章：</p>
+                        <div class="arr">
+                           
+                                {volist name="artArr" id="vo"}
+                                <div class="article_info"> 
+                                    <a href="{:url('article/articleShow')}?article_id={$vo.article_id}"><<{$vo.article_title}>></a> 
+                                </div> 
+                               {/volist}
+                           
+                        </div>
+                    </li>
+                    {/if}
+                </ul>  
+            </div>
+        </div>
+        
+        {include file="public/footer"}
+        
+        <script>
+            function vist_edit(title,url,id,w,h){
+                layer.open({
+                    title:'信息修改',
+                    type:2,
+                    content:url,
+                    area:['900px','500px'],
+                    end:function(){
+                        window.location.href="{:url('vist/vistInfo')}";
+                    }
+                });  
+            }
+            
+            function vistChangePwd(title,url,id,w,h){
+                layer.open({
+                    title:'修改密码',
+                    type:2,
+                    content:url,
+                    area:['900px','350px'],
+                    end:function(){
+                        window.location.href="{:url('vist/vistInfo')}";
+                    }
+                });  
+            }
+            
+        </script>
+
+    </body>

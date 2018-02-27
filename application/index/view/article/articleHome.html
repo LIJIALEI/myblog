@@ -12,11 +12,15 @@
             </div >
             
             <div class="con_form">
-                <div class="inf"><span class="p1"><a href="{:url('Article/articleHome')}">所有文章</a>|<a href="{:url('Article/articleWrite')}">发表文章</a></span></div>      
+                <div class="inf"><span class="p1">
+                    <a  href="javascript:;" onclick="List(0)">默认排序</a>|
+                    <a href="javascript:;" onclick="List(1)">热度排序</a>|
+                    <a href="{:url('Article/articleWrite')}">发表文章</a>
+                </span></div>      
                 {volist name="article" id="vo"}
                 <ul>
-                    <li><p>{:date('Y/m/d',$vo.article_update_time)}&nbsp;&nbsp;&nbsp;<a href="{:url('article/articleShow')}?article_id={$vo.article_id}">{$vo.article_title}</a><b class="look">(浏览:{$vo.look_count})</b><b class="look">(评论:{$vo.comment_count})</b><span>作者：{$vo.article_author}</span></p></li>
-                </ul>
+                    <li><p>{:date('Y/m/d',$vo.article_update_time)}&nbsp;&nbsp;&nbsp;<a href="{:url('article/articleShow')}?article_id={$vo.article_id}">{$vo.article_title}</a><b class="look">(浏览:{$vo.look_count})</b><b class="look">(评论:{$vo.comment_count})</b><span><a href="{:url('vist/vistOthInfo')}?vist_id={$vo.vist_author_id}">作者：{$vo.article_author}</a></span></p></li>
+                </ul> 
                 {/volist}
                 {$article->render()}
             </div>
@@ -25,11 +29,33 @@
         
         {include file="public/footer"}
         
-        <script>
-       
-    
+<script type="text/javascript">
+    function List(num){
+        var url=window.location.href;
+        if(url.indexOf("1=1")>-1){
+          if(url.indexOf("page=")>-1){
+            url = url.replace(/page=\d*/, '');
+          }
+          if(url.indexOf("List=")>-1){
+            url = url.replace(/List=\d*/, 'List='+num);
+          }else{
+            url=url+"&List="+num;
+          }  
+        }else{
+          url=url+"?1=1";
+          if(url.indexOf("page=")>-1){
+            url = url.replace(/page=\d*/, '');
+          }
+          if(url.indexOf("List=")>-1){
+            url = url.replace(/List=\d*/, 'List='+num);
+          }else{
+            url=url+"&List="+num;
+          }  
+        }
 
-            
-        </script>
+        window.location.href=url;
+    }
+
+</script>
 
     </body>

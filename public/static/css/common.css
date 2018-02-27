@@ -144,11 +144,12 @@ a{
 	
 	
 }
-
+ 
 .foot{
     border-top: 10px solid #4c4c4c;
     height: 50px;
     width: 100%;
+    /*margin-top: 10%;*/
     padding-top: 15px;
     background-color: #333333;
     

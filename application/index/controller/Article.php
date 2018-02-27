@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace app\index\controller;
 use app\index\controller\Base;
 use app\index\model\Article as ArticleModel;
@@ -8,12 +8,25 @@ use think\Session;
 class Article extends Base{
     //日志主页
     public function articleHome(){
-        $article=db('article')->order('article_update_time desc')->paginate(5);
-        $count= count($article);
+        
+        $count= db('article')->count();
+        if(!empty($_GET['List'])){
+            $list=$_GET['List'];
+        }else{
+            $list=0;
+        }
+        $article=db('article');
+        if($list==0){
+            $article=$article->order('article_create_time desc');
+        }
+        else if($list==1){
+            $article=$article->order('look_count desc');
+        }
+        $article=$article->paginate(5,false,['query' => request()->param()]);
         $data=[
             'title'=>'日志页面',
             'count'=>$count,
-            'article'=>$article,
+            'article'=>$article, 
         ];
         $this->assign($data);
         return $this->fetch();
@@ -85,6 +98,7 @@ class Article extends Base{
         db('article')->where('article_id',$article_id)->setField($upd);
         $data=[
             'title'=>'文章展示',
+            'vist'=>$vist,
             'article'=>$res,
             'vistRole'=>$resRole,
             'comment'=>$comment,
