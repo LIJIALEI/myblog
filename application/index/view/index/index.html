@@ -33,7 +33,8 @@
 								<p class="pTime">____{:date('m/d/Y',$vo.article_update_time)}____</p>
 								<a href="{:url('article/articleShow')}?article_id={$vo.article_id}"><p class="pTit">{$vo.article_title}</p></a>
 								<div class="pCon">
-                                <p class="content">{$vo.article_content|mb_substr=0,50,'utf-8'}...</p>
+
+                                <p class="content">{$vo.article_content|htmlspecialchars_decode|strip_tags|mb_substr=0,100,'utf-8'}</p> 
 										
 								</div>
 							</div>
@@ -48,7 +49,7 @@
 								<p class="pTime">____{:date('m/d/Y',$vo.article_update_time)}____</p>
 								<a href="{:url('article/articleShow')}?article_id={$vo.article_id}"><p class="pTit">{$vo.article_title}</p></a>
 								<div class="pCon">
-									<p class="content">{$vo.article_content|mb_substr=0,50,'utf-8'}...</p>
+								<p class="content">{$vo.article_content|htmlspecialchars_decode|strip_tags|mb_substr=0,100,'utf-8'}</p>
 										
 								</div>
 							</div>
@@ -107,9 +108,9 @@
 									<textarea id="sugg" name="sugg" rows="3" cols="84" placeholder="最多200个字哦" onkeyup="checkLen(this)"></textarea>
 								</li>
 								<li>
-                                                                    <input id="sendme" name="sendme" class="sendSug" type="button" value="发&nbsp;&nbsp;&nbsp;&nbsp;送"/>
+                                    <input id="sendme" name="sendme" class="sendSug" type="button" value="发&nbsp;&nbsp;&nbsp;&nbsp;送"/>
 								</li>
-                                                                </form>
+                                </form>
 							</ul>
 						</div>
 					</div>

@@ -8,12 +8,12 @@ class Article extends Base{
 
 	public function articleList(){
 		$count=db('article')->count();
-        $article=db('article')->order('look_count desc')->paginate(10);
+        $article=db('article')->order('article_on_top','desc')->paginate(10);
         $res=Session::get('admin');
         $admin=db('user_role')->where('admin_id',$res['id'])->find();
 
         $data=[
-             
+              
             'article'=>$article,
             'count'=>$count, 
             'admin'=>$admin,
@@ -72,6 +72,28 @@ class Article extends Base{
 
     }
 
+    //置顶
+    public function setTop(){
+        $article_id=$_GET['article_id'];
+        $onTop=$_GET['onTop'];
+        if($onTop==1){
+            if(db('article')->where('article_on_top',1)->count()==4){
+                $this->error('最多只能置顶4个');
+            }
+        }
+        
+
+        if(db('article')->where('article_id',$article_id)->setField('article_on_top',$onTop)){
+            if($onTop==1){
+                $this->success('置顶成功');
+            }else{
+                $this->success('取消置顶成功');
+            }
+        }else{
+            $this->error('连接超时');
+        }
+        
+    }
 
 
 }

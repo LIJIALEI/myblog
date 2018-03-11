@@ -1,24 +1,22 @@
 body{
     background: url(../img/background/vistInfo.jpg) no-repeat ;
-    background-size: 1920px 920px;
+    background-size: 1920px 1080px;
+    background-attachment: fixed;
 
 }
 
 .content{
     width: 100%;   
-    height: 860px;   
-    
+    height: 100%;
 }
-.content .top{
-   position: relative;       
-}
-.top .t_img1{
+
+.top .t_img1{ 
 
     width: 500px;
     height: 104px;
     background: url(../img/logo/vistInfo.png)no-repeat;
     position: absolute;
-    top: 70px;
+    top: 120px;
     left: 200px;
 }
 
@@ -28,15 +26,13 @@ body{
     height: 50px;
     background: url(../img/logo/engInfo.png)no-repeat;
     position: absolute;
-    top: 170px;
+    top: 220px;
     left: 240px;
 }
 
 .con_form{
-    width: 700px;
-    float: left;
-    margin-top: 200px;
-    margin-left: 610px;
+    width: 850px;   
+    margin:200px auto;
     background-color: white;
     opacity: .85;
     border-radius: 30px;
@@ -68,16 +64,16 @@ body{
 }
 
 .con_form ul{
-    width: 500px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 100px;
+        width: 600px;
+    margin: 10px auto;
+
 
 }
 
 .con_form ul li{
-    margin-top: 10px;
-    margin-bottom: 10px;
+/*   border: 1px solid red;*/
+padding-top: 10px;
+padding-bottom: 10px;
     
 }
 .con_form ul li .infoP1{

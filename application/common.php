@@ -61,7 +61,7 @@ function getCateUrl($url){
     if(empty($url)){
         echo "无";
     }else{
-        $str=str_replace("/admin/","","$url");
+        $str=str_replace("../","","$url");
         $url=str_replace(".html", "", "$str");
         echo $url;
     }
@@ -137,5 +137,13 @@ function delPhoto($role){
         echo '删除照片';
     }else{
         
+    }
+}
+
+function onTop($role){
+    if($role==1){
+        echo '已置顶';
+    }else{
+        echo '未置顶';
     }
 }

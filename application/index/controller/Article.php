@@ -17,7 +17,7 @@ class Article extends Base{
         }
         $article=db('article');
         if($list==0){
-            $article=$article->order('article_create_time desc');
+            $article=$article->order('article_on_top desc')->order('article_create_time desc');
         }
         else if($list==1){
             $article=$article->order('look_count desc');

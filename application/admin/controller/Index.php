@@ -9,7 +9,15 @@ class Index extends Base
     public function index()
     {
     	$this->isLogin();
-
+        $category = db('category')->select();//查询出所有分类
+        $result = loop($category);
+        // dump($result);die;
+        $data=[
+           
+            'category'=>$result,
+        ];
+        
+        $this->assign($data);
        	return $this->fetch();
         
     }

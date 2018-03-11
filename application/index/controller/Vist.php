@@ -336,32 +336,38 @@ class Vist extends Base{
         if(request()->isAjax()){
             $input=input('post.');
             $vist_id=$_GET['vist_id'];
-            $vist=db('vist')->where('vist_id',$vist_id)->find();
-            if(empty($input['tit'])){
+            if($vist_id==null){
                 $status=0;
-                $message='主题不能为空';
+                $message='请先登录';
             }else{
-                if(empty($input['sugg'])){
+                $vist=db('vist')->where('vist_id',$vist_id)->find();
+                if(empty($input['tit'])){
                     $status=0;
-                    $message='内容不能为空';
+                    $message='主题不能为空';
                 }else{
-                    $time=time();
-                    $upd=[
-                        'vist_id'=>$vist['vist_id'],
-                        'vist_name'=>$vist['vist_name'],
-                        'suggestion_title'=>$input['tit'],
-                        'suggestion_content'=>$input['sugg'],
-                        'suggestion_create_time'=>$time,
-                    ];
-                    if(db('suggestion')->insert($upd)){
-                        $status=1;
-                        $message='感谢您的建议';
-                    }else{
+                    if(empty($input['sugg'])){
                         $status=0;
-                        $message='抱歉，连接超时了';
+                        $message='内容不能为空';
+                    }else{
+                        $time=time();
+                        $upd=[
+                            'vist_id'=>$vist['vist_id'],
+                            'vist_name'=>$vist['vist_name'],
+                            'suggestion_title'=>$input['tit'],
+                            'suggestion_content'=>$input['sugg'],
+                            'suggestion_create_time'=>$time,
+                        ];
+                        if(db('suggestion')->insert($upd)){
+                            $status=1;
+                            $message='感谢您的建议';
+                        }else{
+                            $status=0;
+                            $message='抱歉，连接超时了';
+                        }
                     }
                 }
             }
+            
             
             return [
                 'status'=>$status,

@@ -275,7 +275,7 @@ class Admin extends Base
     public function adminManageVist(){
         $admin= Session::get('user');
         $res=db('vist')->select();
-        $vist=db('vist')->order('vist_id asc')->paginate(10);;
+        $vist=db('vist')->order('vist_status asc')->paginate(10);;
         $count= db('vist')->count();
         $this->categoryAssign();
         if($admin['role']==1){

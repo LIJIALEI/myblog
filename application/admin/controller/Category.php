@@ -4,7 +4,7 @@ use app\admin\controller\Base;
 
 use think\Session;
 
-class System extends Base{
+class Category extends Base{
 
 	//后台栏目列表
 	public function systemList(){
@@ -25,5 +25,20 @@ class System extends Base{
 	public function systemCateAdd(){
 		
 	}
+
+
+	public function cateList(){
+        $category = db('category')->select();//查询出所有分类
+        $result = loop($category);
+     	$data=[
+           
+            'category'=>$result,
+        ];
+        
+        $this->assign($data);
+		return $this-fetch();
+	}
+
+
 
 }

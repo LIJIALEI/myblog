@@ -5,27 +5,40 @@
 <script type="text/javascript" src="__STATIC__/static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="__STATIC__/static/h-ui.admin/js/H-ui.admin.page.js"></script>        
         
-        <div class="content">
+      <div class="content">
             <div class="top">
                 <div class="t_img1"></div>
                 <div class="t_img2"></div>
             </div >
             
             <div class="con_form">
-                <div class="inf"><span class="p1">
+                <div class="inf">
+                  <span class="p1">
                     <a  href="javascript:;" onclick="List(0)">默认排序</a>|
                     <a href="javascript:;" onclick="List(1)">热度排序</a>|
                     <a href="{:url('Article/articleWrite')}">发表文章</a>
-                </span></div>      
+                  </span>
+                </div>      
                 {volist name="article" id="vo"}
                 <ul>
-                    <li><p>{:date('Y/m/d',$vo.article_update_time)}&nbsp;&nbsp;&nbsp;<a href="{:url('article/articleShow')}?article_id={$vo.article_id}">{$vo.article_title}</a><b class="look">(浏览:{$vo.look_count})</b><b class="look">(评论:{$vo.comment_count})</b><span><a href="{:url('vist/vistOthInfo')}?vist_id={$vo.vist_author_id}">作者：{$vo.article_author}</a></span></p></li>
+                    <li>
+                      <p>{:date('Y/m/d',$vo.article_update_time)}&nbsp;&nbsp;&nbsp;<a href="{:url('article/articleShow')}?article_id={$vo.article_id}">{$vo.article_title}</a>
+                        {if condition="$vo.article_on_top eq 1"}
+                          <b class="look">[置顶]</b>
+                        {/if}
+                        <b class="look">(浏览:{$vo.look_count})</b>
+                        <b class="look">(评论:{$vo.comment_count})</b>
+                        <span>
+                          <a href="{:url('vist/vistOthInfo')}?vist_id={$vo.vist_author_id}">作者：{$vo.article_author}</a>
+                        </span>
+                      </p>
+                    </li>
                 </ul> 
                 {/volist}
                 {$article->render()}
             </div>
             
-        </div>
+      </div>
         
         {include file="public/footer"}
         

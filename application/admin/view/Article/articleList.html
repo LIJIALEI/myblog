@@ -47,7 +47,7 @@
 				<th width="150">作者</th>
                 <th width="150">浏览量</th>
 				<th width="200">发布时间</th>
-				
+				<th>是否置顶</th>
 				<th width="100">操作</th>
 			</tr>
 		</thead>
@@ -60,8 +60,23 @@
 	            <td>{$vo.article_author}</td>
 	            <td>{$vo.look_count}</td>
 	            <td>{:date('Y/m/d  ,  H:i:s',$vo.article_create_time)}</td>
+				<td class="td-status">
+					{if condition="$vo['article_on_top'] eq 1"}
+					<span class="label label-success radius">{$vo.article_on_top|onTop}</span>
+					{else/}
+					<span class="label radius">{$vo.article_on_top|onTop}</span>
+					{/if}
+				</td>
 				<td class="td-manage">
-                   
+   					{if condition="$vo['article_on_top'] eq 1"}
+   					<a style="text-decoration:none" onClick="unsetTop(this,'{$vo.article_id}',0)" href="javascript:;" title="停用">
+   						<i class="Hui-iconfont">&#xe615;</i>
+   					</a>
+   					{else/}
+					<a style="text-decoration:none" onClick="setTop(this,'{$vo.article_id}',1)" href="javascript:;" title="启用">
+						<i class="Hui-iconfont">&#xe631;</i>
+					</a>
+   					{/if}
                     <a title="删除" href="javascript:;" onclick="article_del(this,'{$vo.article_id}','{$admin.delArticle}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 			{/volist}
@@ -105,8 +120,9 @@ function article_del(obj,id,user_role){
 
 function datadel(user_role){
 	if(user_role==1){
+		var check_boxes = $("input[name='article_id']:checked");
 		$('#bdel').click(function() {
-			var check_boxes = $("input[name='article_id']:checked");
+			
 			if(check_boxes.length<=0){
 				layer.msg('您并未选择删除项');
 			}else{
@@ -139,6 +155,26 @@ function datadel(user_role){
     }else{
         layer.msg('无权删除');
     }
+}
+
+//onTop=1
+function setTop(obj,id,onTop){
+	layer.confirm('确认要置顶吗？',function(index){
+		
+		window.location.href="{:url('article/setTop')}?article_id="+id+"&onTop="+onTop;
+		
+		layer.msg('已置顶!',{icon: 5,time:1000});
+	});
+}
+
+//onTop=0
+function unsetTop(obj,id,onTop){
+	layer.confirm('确认要取消置顶吗？',function(index){
+		
+		window.location.href="{:url('article/setTop')}?article_id="+id+"&onTop="+onTop;
+		
+		layer.msg('已取消!',{icon: 5,time:1000}); 
+	});
 }
 
 

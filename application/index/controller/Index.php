@@ -5,10 +5,10 @@ use think\Session;
 
 class Index extends Base{
     public function index (){
-        $article1=db('article')->order('look_count desc')->limit(0,2)->select();
-        $article2=db('article')->order('look_count desc')->limit(2,2)->select();
-//        dump($article1);echo'————';
-//        dump($article2);die;
+        $article1=db('article')->order('article_on_top desc')->limit(0,2)->select();
+        $article2=db('article')->order('article_on_top desc')->limit(2,2)->select();
+        
+        
         $Photo=db('Photo')->order('photo_look_count desc')->limit(0,5)->select();
         $data=[
                 'title'=>'欢迎来到我的博客',

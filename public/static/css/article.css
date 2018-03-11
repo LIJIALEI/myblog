@@ -8,19 +8,17 @@ body{
     width: 100%;   
     height: 100%;   
     
-}
-.content .top{
-   position: relative;       
-}
+} 
+
 .top .t_img1{
 
     width: 500px;
     height: 104px;
     background: url(../img/logo/article.png)no-repeat;
     position: absolute;
-    top: 70px;
+    top: 120px;
     left: 200px;
-}
+} 
 
 .top .t_img2{
 
@@ -28,16 +26,17 @@ body{
     height: 50px;
     background: url(../img/logo/articleEng.png)no-repeat;
     position: absolute;
-    top: 170px;
+    top: 220px;
     left: 240px;
 }
 
 .con_form{
-    width: 700px;
-    height: 450px;
-    float: left;
+    width: 800px;
+    height: 650px;
+/*
     margin-top: 200px;
-    margin-left: 610px;
+    margin-left: 610px;*/
+    margin:140px auto;
     background-color: white;
     opacity: .85;
     border-radius: 30px;
@@ -55,7 +54,7 @@ body{
 
 .con_form .p1{
         
-        font: bold 17px Georgia;
+    font: bold 17px Georgia;
 	color: #666666;
         
 }
@@ -73,8 +72,8 @@ body{
 .con_form ul{
 
     width: 600px;
-    margin: 0px auto;
-    margin-top: 20px;
+    margin: 50px auto;
+
 
 }
 .con_form ul li{

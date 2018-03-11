@@ -8,16 +8,14 @@ body{
     width: 100%;   
     
 }
-.content .top{
-   position: relative;       
-}
+
 .top .t_img1{
 
     width: 500px;
     height: 104px;
     background: url(../img/logo/article.png)no-repeat;
     position: absolute;
-    top: 70px;
+    top: 120px;
     left: 200px;
 }
 
@@ -27,7 +25,7 @@ body{
     height: 50px;
     background: url(../img/logo/articleEng.png)no-repeat;
     position: absolute;
-    top: 170px;
+    top: 220px;
     left: 240px;
 }
 
@@ -37,7 +35,7 @@ body{
     background-color: white;
     opacity: .85;
     border-radius: 30px;
-}
+} 
 
 .con_form:hover{
     box-shadow: 15px 15px 10px #888888;

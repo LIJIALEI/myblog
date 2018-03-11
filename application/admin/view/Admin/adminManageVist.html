@@ -58,9 +58,25 @@
                 <td>{$vo.vist_email}</td>
                 <td>{$vo.vist_role|getVistRole}</td>
                 <td>{:date('Y/m/d  ,  H:i:s',$vo.vist_creat_time)}</td>
-				<td class="td-status"><span class="label label-success radius">{$vo.vist_status|getVistStatus}</span></td>
+				<td class="td-status">
+					{if condition="$vo['vist_status'] eq 1"}
+					<span class="label label-success radius">{$vo.vist_status|getVistStatus}</span>
+					{else/}
+					<span class="label radius">{$vo.vist_status|getVistStatus}</span>
+					{/if}
+					
+				</td>
                 <td class="td-manage">
-                    <a style="text-decoration:none" onClick="{if condition="$vo['vist_status'] eq 1"}vist_stop(this,'{$Think.session.admin.role}','{$vo.vist_role}','{$vo.vist_id}'){else /}vist_start(this,'{$Think.session.admin.role}','{$vo.vist_role}','{$vo.vist_id}'){/if}"  href="javascript:;"  title="停用"><i class="Hui-iconfont">&#xe631;</i></a> 
+                	{if condition="$vo['vist_status'] eq 1"}
+					<a style="text-decoration:none" onClick="vist_stop(this,'{$Think.session.admin.role}','{$vo.vist_role}','{$vo.vist_id}')" href="javascript:;" title="停用">
+   						<i class="Hui-iconfont">&#xe615;</i>
+   					</a>
+					{else/}
+					<a style="text-decoration:none" onClick="vist_start(this,'{$Think.session.admin.role}','{$vo.vist_role}','{$vo.vist_id}')" href="javascript:;" title="启用">
+						<i class="Hui-iconfont">&#xe631;</i>
+					</a>
+					{/if}
+                    <!-- <a style="text-decoration:none" onClick="{if condition="$vo['vist_status'] eq 1"}vist_stop(this,'{$Think.session.admin.role}','{$vo.vist_role}','{$vo.vist_id}'){else /}vist_start(this,'{$Think.session.admin.role}','{$vo.vist_role}','{$vo.vist_id}'){/if}"  href="javascript:;"  title="停用"><i class="Hui-iconfont">&#xe631;</i></a>  -->
                     <a title="删除" href="javascript:;" onclick="vist_del(this,'{$Think.session.admin.role}','{$vo.vist_role}','{$vo.vist_id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
                 </td>
 			</tr>
