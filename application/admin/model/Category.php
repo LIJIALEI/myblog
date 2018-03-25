@@ -2,6 +2,7 @@
 namespace app\admin\model;
 use think\Model;
 
-class Admin extends Model{
-    
+class Category extends Model{
+   
+	
 }

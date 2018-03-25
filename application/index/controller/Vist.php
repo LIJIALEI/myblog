@@ -6,7 +6,6 @@ use think\Validate;
 use think\Session;
 
 class Vist extends Base{
-    
     //游客注册
     public function vistRegi(){
 

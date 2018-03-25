@@ -34,8 +34,9 @@ body{
 .content .infmForm{
 	float: right;
 	right: 100px;
-	top: 80px;
+	top: 100px;
 	position: absolute;
+
 	
 }
 .content .infmForm ul{
@@ -53,16 +54,12 @@ body{
 
 .content .infmForm ul li p{
 	font:  bold 18px Georgia ;
-	color: #666666;
+	color: #333333;
 	
 }
-.content .infmForm ul li .warnning{
-        font:  bold 18px Georgia ;
-	color: red;
-        text-align: center;
-}
 
- #username,#password,#checkPassword,#email{
+
+ .username,.password,.checkPassword,.email,.tel{
 	width: 250px;
 	height: 30px;
 	background-color: transparent;
@@ -72,9 +69,22 @@ body{
 
 	
 }
-#username:focus,#password:focus,#checkPassword:focus,#email:focus{
+.code{
+	height: 30px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 2px solid dimgrey;
+	text-indent: 0.5em;
+}
+.code_send{
+	height: 30px;
+	font:  14px Helvetica;
+	color: #333333;
+
+}
+.username:focus,.password:focus,.checkPassword:focus,.email:focus,.tel:focus,.code:focus{
 	outline: none;
-	border-bottom: 2px solid #333333;
+	border-bottom: 2px solid black;
 }
 .content .infmForm  #agree{
 	margin-top: 5px;

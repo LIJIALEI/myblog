@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="__STATIC__/css/regi.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/Animation.css"/>
 {include file="public/header" /}
 		<div class="content clearfix">
 			<div class="wel ">
 				<div class="img1"></div>
 				<div class="img2"></div>
 			</div>
-                    <form id='regiForm' method="post">
+        <form id='regiForm' method="post">
 			<div class="infmForm ">
 				<ul>
 					<li>
 						<p>用户名:</p>
-						<input id="username" type="text" name="vist_name" id='vist_name' />
+						<input class="username" type="text" name="vist_name" id='vist_name' />
 					</li>
 					<li>
-						<p>输入密码:</p>
-						<input id="password" type="password" name="vist_password" id='vist_password'/>
+						<p>输入密码:</p> 
+						<input class="password" type="password" name="vist_password" id='vist_password'/>
 					</li>
 					<li>
 						<p>再次输入:</p>
-						<input id="checkPassword" type="password" name="vist_password_confirm"  id='vist_password_confirm'/>
+						<input class="checkPassword" type="password" name="vist_password_confirm"  id='vist_password_confirm'/>
 					</li>
 					<li>
 						<p>邮箱:</p>
-						<input id="email" type="text" name="vist_email" id='vist_email'/>
-						
+						<input class="email" type="text" name="vist_email" id='vist_email'/>
 					</li>
+				<!-- 	<li>
+						<p>手机：</p>
+						<input type="text" name="vist_tel" id="vist_tel" class="tel">
+					</li>
+					<li>
+						<p>验证码:</p>
+						<input type="text" name="code" id="code" class="code">
+						<button onclick="sendCode()" id="code_send" class="code_send" >发送验证码</button>
+					</li> -->
                                        
 					<li>
-                                            <input type="button" id='regi' class="sub" value="注     册">
-					</li>
-                                        <li>
-                                            <p type='hidden' id='warnning' class="warnning"></p>
+                       <input type="button" id='regi' class="sub" value="注     册">
+					</li> 
+
+                    <li>
+                        <p type='hidden' id='warnning' class="warnning"></p>
 					</li>
                                         
 				</ul>	
 			</div>
-                    </form>
+        </form>
 	
 		</div>
 		
@@ -62,10 +72,12 @@
 		</div>
 		
 		{include file="public/footer" /}
-	</body>
+	</body> 
         
         <script>
             $(document).ready(function(){
+
+
                 $('#regi').click(function(){
                     $.ajax({
                         type:"post",
@@ -77,12 +89,81 @@
                                 alert(data.message);
                                 window.location.href="{:url('Vist/vistLogin')}";
                             }else{
-                                $('#warnning').html(data.message);
+                                // $('#warnning').html(data.message);
+                                alert(data.message);
                             }
                         }
                     });
-                });
+                }); 
             });
             
         </script>
+<script type="text/javascript">
+  //发送验证码
+  function sendCode(){
+    var num = $("#vist_tel").val();
+    if (is_mobile(num)) {
+      TimeCountdown();
+      var url="{:url('vist/sendMsg')}?num="+num;
+      $.ajax({
+          url:url,
+          success: function(data){
+           alert(data.info);
+        }
+      });
+    }else alert('请输入正确的电话号码');
+     
+  };
+
+
+  var initwait = 60;//初始化计数时间
+  var wait = 60; //倒计时
+  var stime = getCookie('send_time');//获取cookie保存的倒计时时间戳
+  var ctime = getCurrTime();//当前时间戳
+  if(stime != undefined){
+    if(stime - ctime>0){
+      wait = stime - ctime;
+      TimeCountdown();
+    }
+  }
+   function TimeCountdown(){
+        if (wait == 0) {
+            $('#code').html('重发验证码');
+            // $('#code').attr("value",'重发验证码');
+            $('#code').attr("disabled", false);
+            wait = initwait;
+        }else {
+            if(!getCookie('send_time')){
+                setCookie('send_time', getCurrTime()+initwait, 1/1440);
+            }
+            $('#code').attr("disabled", true);
+            $('#code').html(wait + "秒后重发");
+            // $('#code').attr("value",wait + "秒后重发");
+            wait--;
+            setTimeout(function(){
+                TimeCountdown();
+            }, 1000);
+        }
+    }
+  //获取当前时间戳
+  function getCurrTime(){
+    var now = new Date(); //获取系统日期，即Sat Jul 29 08:24:48 UTC+0800 2006
+    return Math.ceil(now.getTime()/1000);
+  }
+
+// });
+
+  //验证手机号
+function is_mobile(mobile) {
+     if( mobile == "") {
+      return false;
+     } else {
+       if( ! /^0{0,1}(13[0-9]|17[0-9]|15[0-9]|18[0-9]|14[0-9])[0-9]{8}$/.test(mobile) ) {
+        return false;
+      }
+      return true;
+    }
+}
+</script>
+<script type="text/javascript" src="__STATIC__/js/apiJquery.js"></script>
 </html>

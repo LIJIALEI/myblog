@@ -11,7 +11,7 @@ class Article extends Base{
         $article=db('article')->order('article_on_top','desc')->paginate(10);
         $res=Session::get('admin');
         $admin=db('user_role')->where('admin_id',$res['id'])->find();
-
+ 
         $data=[
               
             'article'=>$article,
@@ -92,7 +92,50 @@ class Article extends Base{
         }else{
             $this->error('连接超时');
         }
-        
+         
+    }
+
+
+    //后台添加文章
+    public function articleAdd(){
+        if(request()->isAjax()){
+            $admin=Session::get('admin');
+            $input=input('post.');
+            $validate=validate('Article');
+            if(!($validate->scene('articleWrite')->check($input))){
+                $status=0;
+                $message=$validate->getError();
+            }else{
+
+
+                $time=time();
+                $upd=[
+                    'vist_author_id'=>$admin['id'],
+                    'article_author'=>$admin['name'],
+                    'article_title'=>$input['article_title'],
+                    'article_content'=>$input['article_content'],
+                    'article_create_time'=>$time,
+                    'article_update_time'=>$time,
+                ];
+                
+                if(db('article')->insert($upd)){
+                    
+                    $status=1;
+                    $message='发表成功';
+                }else{
+                    $status=0;
+                    $message='连接超时';
+                }
+            }
+
+            return [
+                'status'=>$status,
+                'message'=>$message,
+            ];
+        }
+
+
+        return $this->fetch();
     }
 
 

@@ -10,6 +10,7 @@ class Vist extends Validate{
         ['vist_password','require|max:15','登录密码不能为空|密码过长'],
         ['vist_password_confirm','require|confirm','确认密码不能为空|两次密码不相同'],
         ['vist_email','require|unique:vist|email','邮箱不能为空|邮箱已使用|邮箱格式不正确'],
+        // ['vist_tel','require|unique:vist','手机不能为空|手机已使用'],
         
         //游客登录
         ['loginEmail','require','邮箱不能为空'],

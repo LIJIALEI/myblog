@@ -223,7 +223,7 @@ class Admin extends Base
        
     }
 
-    //admin添加
+    //admin添加 
     public function adminAdd(){
           if(request()->isAjax()){
             $status=0;
@@ -275,7 +275,7 @@ class Admin extends Base
     public function adminManageVist(){
         $admin= Session::get('user');
         $res=db('vist')->select();
-        $vist=db('vist')->order('vist_status asc')->paginate(10);;
+        $vist=db('vist')->order('vist_role desc')->paginate(10);;
         $count= db('vist')->count();
         $this->categoryAssign();
         if($admin['role']==1){
@@ -364,8 +364,6 @@ class Admin extends Base
             $radio=$_POST['radio']; 
             $upd['vist_role']=$radio;
             $roleArticle=$_POST['roleArticle'];
-            // dump($radio);
-            // dump($roleArticle);die;
            
             $num='';
             for($i=0;$i<strlen($roleArticle);$i++){
@@ -508,12 +506,30 @@ class Admin extends Base
             'admin'=>$admin,
             'admin_role'=>$admin_role,
         ];
-        $this->assign($data);
+        $this->assign($data); 
 
         return $this->fetch();
     }
     
-       
+    
+    //批量删除用户
+    public function vistAllDel(){
+        $vist=$_POST['vist_id'];    
+        for($i=0;$i<sizeof($vist);$i++){
+            if(db('vist')->where('vist_id',$vist[$i])->delete()&&db('vist_role')->where('vist_id',$vist[$i])->delete()){
+                $status=1;
+                $msg='删除用户成功';
+            }else{
+                $status=0;
+                $msg='连接超时';
+            }
+        }
+
+        return [
+                'status'=>$status,
+                'message'=>$msg,
+            ];
+    }
 
  
 }

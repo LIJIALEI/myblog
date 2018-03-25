@@ -24,17 +24,17 @@
 <title>后台栏目列表</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>栏目管理 <span class="c-gray en">&gt;</span> 栏目列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
-	 <a href="javascript:;" onclick="cate_add('添加栏目','systemCateAdd.html','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加栏目</a></span>
+	 <a href="javascript:;" onclick="cate_add('systemCateAdd.html')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加栏目</a></span>
 	  <span class="r">共有数据：<strong>{$count}</strong> 条</span> 
 	</div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 			<tr>
-				<th scope="col" colspan="9">员工列表</th>
+				<th scope="col" colspan="9">栏目列表</th>
 			</tr>
 			<tr class="text-c">
 				
@@ -48,16 +48,16 @@
 		</thead>
 		<tbody>
 			{volist name='tree' id='vo'}
-					<tr class="text-c">
-                        <td>{$vo.id}</td>    
-                        <td>{$vo.pid}</td>                    
-                        <td class="text-l">{$vo.html}{$vo.cate_title}</td>
-                        <td>{$vo.cate_url|getCateUrl}</td>
-                        <td class="td-manage">
-                			<a title="删除" href="javascript:;" onclick="category_del(this,'{$vo.id}','{$vo.pid}','{$admin.role}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
-            			</td>
-			
-					</tr>
+				<tr class="text-c">
+	                <td>{$vo.id}</td>    
+	                <td>{$vo.pid}</td>                    
+	                <td class="text-l">{$vo.html}{$vo.cate_title}</td>
+	                <td>{$vo.cate_url|getCateUrl}</td>
+	                <td class="td-manage">
+	        			<a title="删除" href="javascript:;" onclick="category_del(this,'{$vo.id}','{$vo.pid}','{$admin.role}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+	    			</td>
+		
+				</tr>
 			{/volist}
 		</tbody>
 	</table>
@@ -79,8 +79,8 @@ function category_del(obj,id,pid,user_role){
     		layer.msg('此栏目为顶级栏目不能被删除');
     	}else{
     		layer.confirm('确认要删除吗？',function(index){
-				//window.location.href="{:url('')}?category_id="+id;
-				layer.msg('暂不支持');
+				window.location.href="{:url('category/cateDel')}?category_id="+id;
+				
 			});
     	}
 		
@@ -90,9 +90,18 @@ function category_del(obj,id,pid,user_role){
 	
     
 }
-function cate_add(){
-	layer.msg('暂不支持');
-}
+function cate_add(url){
+	///layer.msg('暂不支持');
+	layer.open({
+			title:'添加栏目',
+			type:2,
+			content:url,
+			area:['900px','350px'],
+			end:function(){
+				window.location.href="{:url('category/systemList')}";
+			}
+		});
+} 
 </script>
 </body>
 </html>

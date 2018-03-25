@@ -30,6 +30,9 @@
 <div class="page-container">
 	
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+		<a href="javascript:;" onclick="article_add('添加文章','articleAdd.html','800','500')" class="btn btn-primary radius">
+			<i class="Hui-iconfont">&#xe600;</i> 添加文章
+		</a>
 		<a href="javascript:;" onclick="datadel('{$admin.delArticle}')" id="bdel" class="btn btn-danger radius">
 			<i class="Hui-iconfont">&#xe6e2;</i> 批量删除 
 		</a>
@@ -177,6 +180,18 @@ function unsetTop(obj,id,onTop){
 	});
 }
 
+
+function article_add(title,url,w,h){
+	layer.open({
+			title:'添加文章',
+			type:2,
+			content:url,
+			area:['900px','700px'],
+			end:function(){
+				window.location.href="{:url('article/articleList')}";
+			}
+		});
+}
 
 </script>
 </body>
