@@ -1,0 +1,104 @@
+
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/css/style.css" />
+<title>添加管理员 - 管理员管理</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<article class="cl pd-20">
+    <form id="upload" method="post" enctype="multipart/form-data" class="form form-horizontal" action="{:url('travel/go')}">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>发起者：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text"  class="input-text" placeholder="" value="{$admin.name}" disabled="disabled" name="sponsor_name" id="sponsor_name">
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系方式：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text"  class="input-text" placeholder="手机号" name="sponsor_tel" id="sponsor_tel">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>目的地：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text"  class="input-text" placeholder="" name="travel_place" id="travel_place">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>时间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" onfocus="WdatePicker( { minDate:'#F{ $dp.$D(\'sponsor_endtime\')||\'%y-%M-{ %d+1 }\' }' } )" id="sponsor_starttime" class="input-text Wdate" style="width:120px;" name="sponsor_starttime">
+                -
+                <input type="text" onfocus="WdatePicker( { minDate:'#F{ $dp.$D(\'sponsor_starttime\') }' } )" id="sponsor_endtime" class="input-text Wdate" style="width:120px;" name="sponsor_endtime">     
+            </div>
+        </div>
+ 
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>简要描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <script id="editor" name="travel_des" type="text/plain" style="height: 300px;" ></script> 
+            </div>
+        </div>
+
+        <div class="row cl"> 
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="file" name="image" accept="image/jpg,image/jpeg,image/png"/> <br> <br>
+                                <span>ps:请上传jpg,jpeg,png格式的图片哦~</span>
+            </div>
+        </div>
+        
+        
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" id="button" type="submit" value="&nbsp;&nbsp;上传&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+
+<script type="text/javascript" src="__STATIC__/lib/ueditor/1.4.3/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="__STATIC__/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+
+<script type="text/javascript" src="__STATIC__/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/laypage/1.2/laypage.js"></script>
+
+
+    <script type="text/javascript">
+            $(function(){
+                var ue = UE.getEditor('editor',{
+                    iframeCssUrl: '__PUBLIC__/other/ueditor/themes/iframe.css',// 引入css
+                    autoHeightEnabled: true,
+                    autoFloatEnabled: true 
+                });
+                
+            });
+    </script>
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

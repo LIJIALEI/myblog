@@ -85,7 +85,7 @@ $(document).ready(function(){
         $.ajax({
             type:"post",
             dataType:"json",
-            url:"{url('vistRole')}?vist_id=$vist['vist_id']",
+            url:"{url('vistRole')}?vist_id="+{$vist['vist_id']},
             data:{
                 radio:$('input:radio:checked').val(),
                 roleArticle:$("input[name='roleArticle']:checked").serialize()

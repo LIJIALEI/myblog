@@ -25,7 +25,7 @@ a{
 .header_in img{
 	width: 50px;
 	height: 50px;
-	margin-left: 20px;
+	margin-left: 1%;
 	
 }
 
@@ -38,7 +38,7 @@ a{
 
 .header_ul li{
 	float: left;
-	padding-top: 15px;
+	padding-top: 4%;
 	padding-right: 25px;
 	
 	
@@ -61,7 +61,7 @@ a{
 }
 .sess{
     position: absolute;
-    top: 23px;
+    top: 20px;
     left:85px;
 }
 
@@ -75,58 +75,8 @@ a{
 	color: #a09f9f;
 }
 
-.footer{
-	
-	height: 175px;
-	background: #333333;
-	border-top: 10px solid #4c4c4c;
 
 
-	
-}
-
-.footer_main{
-	margin: 0 auto;
-	width: 500px;
-	margin-top: 20px;
-	height: 100px;
-}
-.footer_main>div{
-	float: left;
-}
-.footer_main p{
-	color: #8e8e8e;
-	font: 15px Helvetica;
-	
-}
-.footer_main a{
-	
-	color: #8e8e8e;
-	font: 11px Helvetica;
-}
-
-
-.footer_main .ft_center{
-	background: url(../img/logo/wechat.png)no-repeat bottom center;
-	background-size: 70px 70px;
-	width: 100px;
-	height: 110px;
-	margin-left: 120px;
-	
-}
-
-
-
-			/*footer*/
-.footer_main .ft_right{
-	background: url(../img/logo/weibo.png)no-repeat bottom center;
-	background-size: 70px 70px;
-	width: 100px;
-	height: 110px;
-	float: right;
-	
-	
-}
 .ft_center p,.ft_right p{
 	text-align: center;
 	font-size: 11px;
@@ -149,7 +99,6 @@ a{
     border-top: 10px solid #4c4c4c;
     height: 50px;
     width: 100%;
-    /*margin-top: 10%;*/
     padding-top: 15px;
     background-color: #333333;
     

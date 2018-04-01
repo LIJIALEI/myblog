@@ -16,23 +16,13 @@
             
                 <div class="inf">
                     <span class="p1">
+                        
+                        <a href="javascript:;" onclick="sponsTravel('上传图片','sponsTravel.html','{$role}')">发起旅游|</a>
                         <a  href="javascript:;" onclick="List(0)">默认排序|</a>
-                        <a href="javascript:;" onclick="List(1)">热度排序|</a>
-                        <a href="javascript:;" onclick="photo_upload('上传图片','photoUpload.html','{$role}')">上传图片</a>
+                        <a href="javascript:;" onclick="List(1)">热度排序</a>
                     </span>
                 </div>      
-                <ul>
-                    {volist name="photo" id="vo"}
-                    <li>
-                        <img class="sigUpload" src="__STATIC__/{$vo.photo_src}" onclick="photo_show('{$vo.photo_title}','photoShow.html?photo_id={$vo.photo_id}','{$vo.photo_id}','1600','800')">
-                        <p><a href="javascript:;" onclick="photo_show('{$vo.photo_title}','photoShow.html?photo_id={$vo.photo_id}')">{$vo.photo_title}</a></p>
-                        <p><span>上传者：{$vo.photo_er}</span></p>
-                        <p><span>浏览次数：{$vo.photo_look_count}</span></p>
-                        <p><span>上传时间：{:date('Y/m/d,H:i:s',$vo.photo_upload_time)}</span></p>
-                    </li>
-                    {/volist} 
-                    {$photo->render()}
-                </ul>
+                
             
                 
                 
@@ -43,39 +33,28 @@
         {include file="public/footer"}
 
 <script>
-    function photo_show(title,url,id,w,h){
-        layer.open({
-            title:'风景详情',
-            type:2,
-            content:url,
-            offset: '100px',
-            area:['1605px','800px'],
-            
-        });  
-    }
+   
     
-    function photo_upload(title,url,role){
-        if(role==2){
-            layer.msg('请先登录');
+function sponsTravel(title,url,role){
+    if(role==2){
+        layer.msg('请先登录');
+    }else{
+        if(role==0){
+            layer.msg('只有会员用户可以发起旅游');
         }else{
-            if(role==0){
-                layer.msg('您无权上传');
-            }else{
-                layer.open({
-                    title:'上传',
-                    type:2,
-                    content:url,
-                    offset: '400px',
-                    area:['1000px','300px'],
-                    end:function(){
-                        window.location.href="{:url('photo/photoHome')}";
-                    }
-                });  
-            } 
+            layer.open({
+                title:'走',
+                type:2,
+                content:url,
+                offset: '80px',
+                area:['1000px','800px'],
+                end:function(){
+                    window.location.href="{:url('travel/travel')}";
+                }
+            });  
         }
-        
-        
-    }
+    }      
+}
 </script>
 <script type="text/javascript">
     function List(num){

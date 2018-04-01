@@ -12,43 +12,41 @@
 <article class="cl pd-20">
 	<form id="add" method="post" class="form form-horizontal" id="form-admin-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>栏目名：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>栏目ID：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="cate_title" name="cate_title">
+				<input type="text" class="input-text" value="{$cate.id}" placeholder="" id="cate_id" name="cate_id" disabled="disabled">
 			</div>
 		</div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">
-                <span class="c-red">*</span>
-                父栏目：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>栏目名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box">
-                <select class="select" id="sel_Sub" name="pid" >
-                    <option value="0">顶级栏目</option>
-                    {volist name="cate" id="vo"}
-                    <option value="{$vo.id}">{$vo.cate_title}</option>
-                    {/volist}
-                </select>
-                </span>
-            </div>
-
-            <div class="col-3">
+                <input type="text" class="input-text" value="{$cate.cate_title}" placeholder="" id="cate_title" name="cate_title" >
             </div>
         </div>
 
-
-    
-		
-	
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">栏目路径：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>栏目路径：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="../xxx/xxx.html" id="cate_url" name="cate_url">
-                <span>如为顶级栏目可不填哦~</span>
+                <input type="text" class="input-text" value="{$cate.cate_url}" placeholder="" id="cate_url" name="cate_url" >
             </div>
         </div>
 
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否变为不可删除栏目：</label>
+            <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+                <div class="radio-box">
+                    <input name="yn" type="radio" id="yes" value='1' checked="checked">
+                    <label for="yes">是</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="no" value='0' name="yn" >
+                    <label for="no">否</label>
+                </div>
+            </div>
+        </div>      
+		
+        
 
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
@@ -76,8 +74,12 @@ $(document).ready(function(){
         $.ajax({
             type:"post",
             dataType:"json",
-            url:"{url('systemCateAdd')}",
-            data:$("#add").serialize(),
+            url:"{url('cateEdit')}?id={$cate.id}",
+            data:{
+                cate_role:$('input:radio:checked').val(),
+                cate_title:$("#cate_title").val(),
+                cate_url:$("#cate_url").val() 
+            },
             success:function(data){
                 if(data.status==0){
                     layer.msg(data.message);

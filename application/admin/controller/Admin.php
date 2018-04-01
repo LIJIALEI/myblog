@@ -76,7 +76,7 @@ class Admin extends Base
 
       if($admin['role']==1){
         $count=db('user')->count();
-        $res=db('user')->order('role desc')->select();
+        $res=db('user')->order('role desc')->paginate(10);
       }else{
         $res=db('user')->where('id',$admin['id'])->select();
         $count=count($res);
@@ -275,7 +275,7 @@ class Admin extends Base
     public function adminManageVist(){
         $admin= Session::get('user');
         $res=db('vist')->select();
-        $vist=db('vist')->order('vist_role desc')->paginate(10);;
+        $vist=db('vist')->order('vist_role desc')->paginate(10);
         $count= db('vist')->count();
         $this->categoryAssign();
         if($admin['role']==1){
@@ -371,7 +371,6 @@ class Admin extends Base
                     $num.=$roleArticle[$i];
                 }
             }
-            // dump($num);die;
             $upd_role['vist_role']=$radio;
             if(strpos($num,"1")>-1){
                 $upd_role['commentArticle']=1;
@@ -399,8 +398,10 @@ class Admin extends Base
             }else{
                 $upd_role['uploadPhoto']=0;
             }
+            
             db('vist_role')->where('vist_id',$vist_id)->setField($upd_role);
             db('vist')->where('vist_id',$vist_id)->setField($upd);
+            
             $status=1;
             $message='修改成功';
 

@@ -19,10 +19,7 @@ class Base extends Controller{
         }
     }
     
-    //检测用户权限—文章
-    protected  function vistLookRole(){
-        
-    }
+
    
     
 }

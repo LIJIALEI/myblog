@@ -48,7 +48,7 @@ function loop($data, $id=0) {
             if($v['pid'] == $id) {
                 $v['son'] = loop($data, $v['id']);
                 if(empty($v['son'])) {
-                    unset($v['son']);
+                    $v['son']=='';
                 }
                 array_push($list, $v);
             }
@@ -145,5 +145,23 @@ function onTop($role){
         echo '已置顶';
     }else{
         echo '未置顶';
+    }
+}
+
+
+function cateRole($role){
+    if($role==1){
+        echo '不能';
+    }else{
+        echo '能';
+    }
+}
+
+
+function status($i){
+    if($i==1){
+        echo '已通过';
+    }else{
+        echo '未通过';
     }
 }

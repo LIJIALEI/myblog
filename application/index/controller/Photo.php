@@ -8,8 +8,19 @@ use think\Session;
 class Photo extends Base{
     //风景首页
     public function photoHome(){
-        $vist=Session::get('vist');
-        $res=db('vist_role')->where('vist_id',$vist['vist_id'])->find();
+        if(Session::has('vist')){
+            $res=Session::get('vist');
+            $vist=db('vist_role')->where('vist_id',$res['vist_id'])->find();
+            if($vist['uploadPhoto']==1){
+                $role=1;
+            }else{
+                $role=0;
+            }
+        }else{
+            $role=2;
+        }
+        
+        
         //判断排列条件
         if(!empty($_GET['List'])){
             $list=$_GET['List'];
@@ -26,10 +37,11 @@ class Photo extends Base{
         }
 
         $photo=$photo->paginate(3,false,['query' => request()->param()]);
+
         $data=[
             'title'=>'风景相册',
             'photo'=>$photo,
-            'vist'=>$res
+            'role'=>$role
         ];
         $this->assign($data);
         return $this->fetch();
@@ -57,10 +69,7 @@ class Photo extends Base{
 
     
     //图片上传
-    public function photoUpload(){
-       
-
-        
+    public function photoUpload(){  
         return $this->fetch();
     }
     
@@ -68,14 +77,10 @@ class Photo extends Base{
     public function photoUploadFile(){
         $photo_title=$_POST['photo_title'];
         $time=time();
-        if(!Session::has('vist')){
-            $this->error('请先登录');
-        }
+        
         $vist= Session::get('vist');
         $res=db('vist_role')->where('vist_id',$vist['vist_id'])->find();
-        if($res['uploadPhoto']!=1){
-            $this->error('你不能上传图片');
-        }
+        
         if(empty($photo_title)){
             $this->error('标题不能为空');
         } else {
