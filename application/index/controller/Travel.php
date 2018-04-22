@@ -1,6 +1,7 @@
 <?php 
 namespace app\index\controller;
 use app\index\controller\Base;
+use app\index\model\Travel as TravelModel;
 use think\Validate;
 use think\Session;
 
@@ -11,21 +12,40 @@ class Travel extends Base{
 		if(!Session::has('vist')){
 			$role=2;
 		}else{
-			$res=Session::get('vist');
-            $vist=db('vist_role')->where('vist_id',$res['vist_id'])->find();
-            if($vist['vist_role']==1){
+			$vist=Session::get('vist');
+            $vr=db('vist_role')->where('vist_id',$vist['vist_id'])->find();
+            $this->assign('vist',$vist);
+            if($vr['vist_role']==1){
                 $role=1;
             }else{
                 $role=0;
             }
 		}
 
+
+		
+		if(!empty($_GET['List'])){
+			$list=$_GET['List'];
+		}else{
+			$list=0;
+		}
+			
+		if($list==1){
+			$res=db("travel")->where('status',1)->order('participant_count desc')->paginate(3,false,['query' => request()->param()]);
+		}else{
+			$res=db("travel")->where('status',1)->order('creatime desc')->paginate(3,false,['query' => request()->param()]);
+			
+		}
+		
 		$title='旅游团';
 		$this->assign('title',$title);
 		$this->assign('role',$role);
+		$this->assign('travel',$res);
+
 		return $this->fetch();
 	}
 
+	//发起旅游
 	public function sponsTravel(){
 		$vist=Session::get('vist');
 		$this->assign('vist',$vist);
@@ -76,6 +96,57 @@ class Travel extends Base{
                 }
 			}
 		}
+	}
+
+	public function travelDetail(){
+		$travel_id=$_GET['travel_id'];
+		$model=new TravelModel();
+		$res=$model->where('travel_id',$travel_id)->find();
+		$this->assign('travel',$res);
+
+		if(!Session::has('vist')){
+			$role=2;
+		}else{
+			$res=Session::get('vist');
+            $this->assign('vist',$res);
+            $role=1;
+		}
+		$this->assign('role',$role);
+		return $this->fetch();
+	}
+
+	//加入旅游
+	public function travelAdd(){
+		$data['vist_id']=$_GET['vist_id'];
+		$data['travel_id']=$_GET['travel_id'];
+		$res=db('travel')->where('travel_id',$data['travel_id'])->find();
+		$t=db('vist_travel')->where('travel_id',$data['travel_id'])->select();
+		// dump($data);die;
+	
+		$vist_id=[];
+		foreach ($t as $key => $value) {
+			$vist_id[]=$value['vist_id'];
+		}
+		// dump($vist_id);die;
+
+		if(in_array($data['vist_id'], $vist_id)){
+			$this->error('您已经报名过了');			
+		}else{ 
+			$d['participant_count']=$res['participant_count']+1;
+			if(db('vist_travel')->insert($data)){
+				if(db('travel')->where('travel_id',$data['travel_id'])->setField($d)){
+					$this->success('加入成功');
+				}
+			}else{
+				$this->error('连接超时','travel/travel');
+			}
+		}
+
+
+		
+		
+		
+
 	}
 
 }

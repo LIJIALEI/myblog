@@ -9,7 +9,7 @@ class Travel extends Base{
 	//旅游列表
 	public function travelList(){
 		$model=new TravelModel();
-		$res=$model->order('status asc')->paginate(3);
+		$res=$model->order('status asc')->order('creatime desc')->paginate(10);
 		$count=$model->count();
 		$this->assign('travel',$res);
 		$this->assign('count',$count);

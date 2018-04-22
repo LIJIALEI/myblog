@@ -1,0 +1,113 @@
+
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/static/h-ui.admin/css/style.css" />
+<title>添加管理员 - 管理员管理</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<article class="cl pd-20">
+    <form id="upload" method="post" enctype="multipart/form-data" class="form form-horizontal" >
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>发起者：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div style="margin-top: 0.4%;">{$travel.sponsor_name}</div>
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系方式：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div style="margin-top: 0.4%;">{$travel.sponsor_tel}</div>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>目的地：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div style="margin-top: 0.4%;">{$travel.travel_place}</div>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>时间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+               <div style="margin-top: 0.4%;">
+                    {:date('Y/m/d',$travel.sponsor_starttime)}-{:date('Y/m/d',$travel.sponsor_endtime)}  
+               </div>
+            </div>
+        </div>
+ 
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>简要描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                {if condition="$travel.travel_des neq null"}
+                <div style="margin-top: 0.4%;">{$travel.travel_des}</div>
+                {else/}
+                <div style="margin-top: 0.4%;">无</div>
+                {/if}
+            </div> 
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否通过审批：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div style="margin-top: 0.4%;">{$travel.status|status}</div>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片摘要：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <img src="__STATIC__/{$travel.travel_img_url}" style="width: 650px;height: 400px; margin-top: 0.4%; ">
+            </div>
+        </div>
+
+      
+        
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" onclick="join('{$role}','{%Think.session.vist.vist_id}','{$travel.sponsor_id}','{$travel.travel_id}')" id="button" type="button" value="&nbsp;&nbsp;立刻加入&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+
+
+<script type="text/javascript" src="__STATIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+
+
+
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+<script type="text/javascript">
+    function join(role,vist_id,sponsor_id,travel_id){
+        if(role==2){
+            layer.msg('请先登录');
+        }else{
+            if(vist_id==sponsor_id){ 
+                layer.msg('您就是发起者。');
+            }else{
+                window.location.href="{:url('travel/travelAdd')}?vist_id="+vist_id+"&travel_id="+travel_id;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
