@@ -26,9 +26,11 @@
                         {volist name="travel" id="vo"}
                         <li>
                             <img class="sign" src="__STATIC__/{$vo.travel_img_url}" onclick="detail('travelDetail.html?travel_id={$vo.travel_id}')">
-                            
+                            {if condition ="$role eq 2"}
+                            <button class="addTravel" onclick="join('{$role}','','{$vo.sponsor_id}','{$vo.travel_id}')">请先登录</button>
+                            {else/}
                             <button class="addTravel" onclick="join('{$role}','{$vist.vist_id}','{$vo.sponsor_id}','{$vo.travel_id}')">立刻加入</button>
-                            
+                            {/if}
                             <div class="infoRight">
                                 <ul class="rtr">
                                     <li><p class="right_p">发起者：{$vo.sponsor_name}</p></li>
@@ -118,7 +120,8 @@ function sponsTravel(title,url,role){
 
     function join(role,vist_id,sponsor_id,travel_id){
         if(role==2){
-            layer.msg('请先登录');
+            // layer.msg('请先登录');
+            window.location.href="{:url('vist/vistLogin')}";
         }else{
             if(vist_id==sponsor_id){
                 layer.msg('您就是发起者。');
